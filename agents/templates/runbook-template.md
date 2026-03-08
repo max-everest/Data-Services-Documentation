@@ -2,42 +2,28 @@
 
 ## Overview
 
-Runbook: Journals - Time
+|Runbook: | Journals - Time |
+| --- | --- |
+|Data Contract: Data Analytics - Data Contracts
+| Purpose: | Operational triage and resolution for the Journals Time pipeline. |
+| Context: | Journals must be posted to Workday to maintain business accounts. The Journals Time report enables this process. Failures, quality issues, or user queries must be reviewed promptly. | 
+| Systems: | PASO → Data Engine → Financial Engine → EEAPI | 
+| When to use: | Use this runbook for incident investigation, performance review, or user queries relating to this pipeline. |
 
-Data Contract: Data Analytics - Data Contracts
+### Issue Severity
+| Level | Description | SLA |
+| --- | ---- | --- |
+| P1 – Urgent | Failure of the entire service  | SLA: 1 hour | 
+| P3 – High | Failure of key elements of the service | SLA: 1 day | 
+| P5 – Low | Service degraded but operational | SLA: 1 week |
 
-Purpose  
-Operational triage and resolution for the Journals Time pipeline.
-
-Context  
-Journals must be posted to Workday to maintain business accounts. The Journals Time report enables this process. Failures, quality issues, or user queries must be reviewed promptly.
-
-Systems  
-PASO → Data Engine → Financial Engine → EEAPI
-
-When to use  
-Use this runbook for incident investigation, performance review, or user queries relating to this pipeline.
-
-Issue Severity
-
-P1 – Urgent  
-Failure of the entire service  
-SLA: 1 hour
-
-P3 – High  
-Failure of key elements of the service  
-SLA: 1 day
-
-P5 – Low  
-Service degraded but operational  
-SLA: 1 week
-
-Ownership
-
-Data Architect: Phil Howard  
-Data Owner: Max Everest  
-Business Owner: Bhavin Patel  
-Technical Team: Data Engineering
+### Owernship
+| Role | Who |
+|---|---|
+| Data Architect: | Adam Smith |  
+| Data Owner: | Jane Bloggs |
+| Business Owner: | Joe Bloggs |
+| Technical Team: | Data Engineering |
 
 
 --------------------------------------------------
@@ -75,18 +61,6 @@ Technical Team: Data Engineering
 --------------------------------------------------
 
 
-## Resolution
-
-| Issue Type | Resolution |
-|-----|-----|
-| Pipeline failure | Restart pipeline and review logs |
-| Data processing failure | Fix configuration or logic error |
-| Source system outage | Coordinate with PASO support team |
-| Data quality issue | Raise bug and perform reconciliation |
-
-
---------------------------------------------------
-
 
 ## Escalation
 
@@ -117,31 +91,3 @@ Typical update frequency: 60–90 minutes.
 | Business Owner + Data Owner | Identification | Root cause identified. Resolution underway. | Email |
 | Business Owner + Data Owner | Resolution | Service restored and processing resumed. | Email |
 | Team | Data quality investigation | Data query raised and being investigated. | Teams |
-
-
---------------------------------------------------
-
-
-## Post Incident
-
-The post-incident review improves process resilience and documentation.
-
-This section does not replace the official incident record in ServiceNow or DevOps.
-
-| Ticket | Date | Duration | Impact | Root Cause | Resolution | Classification | Runbook Updated | Contract Updated |
-|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| 0001 | 2026-08-01 | 2.5 hours | Journals delayed | Server performance issue | Job rerun | Operational | No | No |
-
-
---------------------------------------------------
-
-
-## Lookups
-
-| Type | Description | Change Required |
-|-----|-----|-----|
-| Defect | Logic, configuration, or code failure | No |
-| Operational | Platform, scheduling, or upstream availability | No |
-| Data Issue | Source data quality or schema change | Yes |
-| Enhancement | Missing validation or monitoring | Review |
-| One-off | Non-repeatable external event | No |

@@ -1,0 +1,79 @@
+﻿# Repository Structure
+
+```text
+- .github
+    - agents
+        - docs-indexer.agent.md
+        - runbook-author.agent.md
+- .gitignore
+- .venv
+- agents
+    - agent-architecture.md
+    - context
+        - repo-context.md
+        - repository-map.md
+        - repository-rules.md
+    - templates
+        - runbook-template.md
+- content
+    - blog
+        - drafts
+            - test.md
+        - index.md
+    - data-contracts
+        - drafts
+            - index.md
+    - entity-engine
+        - drafts
+        - index.md
+    - runbooks
+        - data-engine
+            - index.md
+        - drafts
+            - index.md
+        - entity-engine
+            - index.md
+            - invoice-mismatches.md
+        - index.md
+        - template
+            - index.md
+            - Template.md
+    - sops
+        - drafts
+        - index.md
+- docs
+    - assets
+        - images
+            - RSM_Standard_White_Logo.png
+        - stylesheets
+            - extra.css
+    - blog
+        - index.md
+    - data-contracts
+        - index.md
+    - entity-engine
+        - index.md
+    - index.md
+    - runbooks
+        - data-platform
+            - ingestion-delay.md
+            - pipeline-failure.md
+        - fabric
+            - lakehouse-refresh-failure.md
+        - integrations
+            - workday-sync-error.md
+        - Template.md
+    - sops
+        - index.md
+- legacy_runbooks
+    - RB_Template.xlsx
+- mkdocs.yml
+- README.md
+- repo_tree.md
+- requirements.txt
+- scripts
+    - convert_runbook_excel.py
+    - deploy.ps1
+    - generate_tree.ps1
+- site
+```
