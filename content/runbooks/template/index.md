@@ -2,6 +2,6 @@
 
 Templates and examples for authoring runbooks.
 
-## Documents
+## Runbooks
 
 - [Template](Template.md)

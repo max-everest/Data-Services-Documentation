@@ -2,6 +2,6 @@
 
 Operational runbooks for Data Engine.
 
-## Documents
+## Runbooks
 
 (No published documents in this category yet.)

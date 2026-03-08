@@ -2,6 +2,6 @@
 
 Operational runbooks for Entity Engine.
 
-## Documents
+## Runbooks
 
 - [Invoice Mismatches](invoice-mismatches.md)

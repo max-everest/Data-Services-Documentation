@@ -62,6 +62,9 @@ extra:
 nav:
   - Home: index.md
   - Blog: blog/index.md
+  - Entity Engine: 
+    - Overview: entity-engine/index.md
+    - API: entity-engine/api.md
   - Data Contracts: data-contracts/index.md
   - Runbooks:
     - Overview: runbooks/index.md
