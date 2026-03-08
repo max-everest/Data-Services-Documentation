@@ -1,43 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://max-everest.github.io/platform-runbooks/index.html</loc>
-         <lastmod>2026-03-07</lastmod>
+         <loc>https://max-everest.github.io/platform-runbooks/blog/index.html</loc>
+         <lastmod>2026-03-08</lastmod>
     </url>
     <url>
-         <loc>https://max-everest.github.io/platform-runbooks/blog/index.html</loc>
-         <lastmod>2026-03-07</lastmod>
+         <loc>https://max-everest.github.io/platform-runbooks/blog/drafts/test.html</loc>
+         <lastmod>2026-03-08</lastmod>
     </url>
     <url>
          <loc>https://max-everest.github.io/platform-runbooks/data-contracts/index.html</loc>
-         <lastmod>2026-03-07</lastmod>
+         <lastmod>2026-03-08</lastmod>
+    </url>
+    <url>
+         <loc>https://max-everest.github.io/platform-runbooks/data-contracts/drafts/index.html</loc>
+         <lastmod>2026-03-08</lastmod>
     </url>
     <url>
          <loc>https://max-everest.github.io/platform-runbooks/entity-engine/index.html</loc>
-         <lastmod>2026-03-07</lastmod>
+         <lastmod>2026-03-08</lastmod>
     </url>
     <url>
-         <loc>https://max-everest.github.io/platform-runbooks/runbooks/Template.html</loc>
-         <lastmod>2026-03-07</lastmod>
+         <loc>https://max-everest.github.io/platform-runbooks/runbooks/index.html</loc>
+         <lastmod>2026-03-08</lastmod>
     </url>
     <url>
-         <loc>https://max-everest.github.io/platform-runbooks/runbooks/data-platform/ingestion-delay.html</loc>
-         <lastmod>2026-03-07</lastmod>
+         <loc>https://max-everest.github.io/platform-runbooks/runbooks/data-engine/index.html</loc>
+         <lastmod>2026-03-08</lastmod>
     </url>
     <url>
-         <loc>https://max-everest.github.io/platform-runbooks/runbooks/data-platform/pipeline-failure.html</loc>
-         <lastmod>2026-03-07</lastmod>
+         <loc>https://max-everest.github.io/platform-runbooks/runbooks/drafts/index.html</loc>
+         <lastmod>2026-03-08</lastmod>
     </url>
     <url>
-         <loc>https://max-everest.github.io/platform-runbooks/runbooks/fabric/lakehouse-refresh-failure.html</loc>
-         <lastmod>2026-03-07</lastmod>
+         <loc>https://max-everest.github.io/platform-runbooks/runbooks/entity-engine/index.html</loc>
+         <lastmod>2026-03-08</lastmod>
     </url>
     <url>
-         <loc>https://max-everest.github.io/platform-runbooks/runbooks/integrations/workday-sync-error.html</loc>
-         <lastmod>2026-03-07</lastmod>
+         <loc>https://max-everest.github.io/platform-runbooks/runbooks/entity-engine/invoice-mismatches.html</loc>
+         <lastmod>2026-03-08</lastmod>
+    </url>
+    <url>
+         <loc>https://max-everest.github.io/platform-runbooks/runbooks/template/index.html</loc>
+         <lastmod>2026-03-08</lastmod>
+    </url>
+    <url>
+         <loc>https://max-everest.github.io/platform-runbooks/runbooks/template/Template.html</loc>
+         <lastmod>2026-03-08</lastmod>
     </url>
     <url>
          <loc>https://max-everest.github.io/platform-runbooks/sops/index.html</loc>
-         <lastmod>2026-03-07</lastmod>
+         <lastmod>2026-03-08</lastmod>
     </url>
 </urlset>
