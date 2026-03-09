@@ -483,24 +483,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="index.html" class="md-nav__link md-nav__link--active">
         
   
@@ -517,36 +499,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documents
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -835,25 +787,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documents
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -873,8 +806,68 @@
 
 
 <h1 id="entity-engine">Entity Engine<a class="headerlink" href="#entity-engine" title="Permanent link">&para;</a></h1>
-<p>Documentation describing entity processing and data transformations.</p>
-<h2 id="documents">Documents<a class="headerlink" href="#documents" title="Permanent link">&para;</a></h2>
+<h1 id="entity-engine_1">Entity Engine<a class="headerlink" href="#entity-engine_1" title="Permanent link">&para;</a></h1>
+<p>Welcome to the <strong>EEHUB Platform Documentation</strong>. This site provides guidance for developers and engineers working with the EEHUB ecosystem, including development practices, release workflows, and operational deployment guidance.</p>
+<p>EEHUB is a multi-solution platform designed to manage and expose Entity Engine data across internal systems and downstream applications.</p>
+<hr />
+<h1 id="platform-overview">Platform Overview<a class="headerlink" href="#platform-overview" title="Permanent link">&para;</a></h1>
+<p>The EEHUB repository contains the full set of components required to build and operate the EEHUB environment. These components are maintained within a single repository to ensure consistent versioning and coordinated releases across all platform elements. :contentReference[oaicite:1]{index=1}</p>
+<p>The repository currently contains three primary solutions:</p>
+<h3 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h3>
+<p>Contains all database assets including:</p>
+<ul>
+<li>Schema definitions  </li>
+<li>Stored procedures  </li>
+<li>Database scripts  </li>
+<li>Data access logic  </li>
+</ul>
+<p>This layer is responsible for the core storage and transformation of Entity Engine data.</p>
+<h3 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
+<p>The API solution provides a web service that enables applications and developers to retrieve EE data programmatically.  </p>
+<p>Typical responsibilities include:</p>
+<ul>
+<li>Exposing entity data via HTTP endpoints  </li>
+<li>Enforcing access patterns  </li>
+<li>Providing a consistent interface for consuming systems  </li>
+</ul>
+<h3 id="clientpush">ClientPush<a class="headerlink" href="#clientpush" title="Permanent link">&para;</a></h3>
+<p>ClientPush jobs are responsible for distributing EE data to external or dependent systems.</p>
+<p>Typical capabilities include:</p>
+<ul>
+<li>Scheduled data pushes</li>
+<li>Integration job execution</li>
+<li>Logging and monitoring of outbound data transfers</li>
+</ul>
+<hr />
+<h1 id="development-model">Development Model<a class="headerlink" href="#development-model" title="Permanent link">&para;</a></h1>
+<p>All development across the EEHUB platform follows a controlled branching and release strategy to ensure stability and predictable releases.</p>
+<p>The repository uses three long-lived branches:</p>
+<table>
+<thead>
+<tr>
+<th>Branch</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>development</strong></td>
+<td>Active development and feature integration</td>
+</tr>
+<tr>
+<td><strong>staging</strong></td>
+<td>QA validation and pre-production testing</td>
+</tr>
+<tr>
+<td><strong>main</strong></td>
+<td>Production-ready code only</td>
+</tr>
+</tbody>
+</table>
+<p>All new work begins in the <strong>development branch</strong>, using feature branches to isolate changes.</p>
+<hr />
+<h1 id="branch-flow">Branch Flow<a class="headerlink" href="#branch-flow" title="Permanent link">&para;</a></h1>
+<p>Code moves through the environment in a structured promotion path:</p>
 
 
 
