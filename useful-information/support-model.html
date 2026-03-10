@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#support-model" class="md-skip">
+        <a href="#data-engineering-support-model" class="md-skip">
           Skip to content
         </a>
       
@@ -715,65 +715,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#support-triage-and-resolution-framework" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#support-tiers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Support Tiers
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#responsibilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Responsibilities
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#escalation-path" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Escalation path
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#communication" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Communication
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#section-pages" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Section Pages
+        Support, Triage and Resolution Framework
       
     </span>
   </a>
@@ -1202,65 +1147,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#support-triage-and-resolution-framework" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#support-tiers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Support Tiers
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#responsibilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Responsibilities
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#escalation-path" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Escalation path
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#communication" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Communication
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#section-pages" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Section Pages
+        Support, Triage and Resolution Framework
       
     </span>
   </a>
@@ -1287,67 +1177,328 @@
   
 
 
-<h1 id="support-model">Support Model<a class="headerlink" href="#support-model" title="Permanent link">&para;</a></h1>
-<p>This document describes how the Data Services team handles incoming requests, incidents, and escalations.</p>
-<h2 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">&para;</a></h2>
+<h1 id="data-engineering-support-model">Data Engineering Support Model<a class="headerlink" href="#data-engineering-support-model" title="Permanent link">&para;</a></h1>
+<h2 id="support-triage-and-resolution-framework">Support, Triage and Resolution Framework<a class="headerlink" href="#support-triage-and-resolution-framework" title="Permanent link">&para;</a></h2>
+<p>This document defines the operational support model for the Data Engineering platform.<br />
+It describes how issues are identified, triaged, resolved and escalated across the engineering team, managed services partners, specialist resources and third-party vendors.</p>
+<p>The model follows a <strong>five-tier support structure</strong> designed to ensure:</p>
 <ul>
-<li>Covers inbound signals from monitoring, partners, and platform engineers.</li>
-<li>Applies to any invoices, pipelines, or integrations that touch the Data Services stack.</li>
-<li>Supports collaboration across Platform, Data Engineering, Operations, and Integration Engineering teams.</li>
+<li>Clear ownership of operational response</li>
+<li>Efficient triage and escalation</li>
+<li>Separation between operational support and engineering design work</li>
+<li>Appropriate engagement with platform vendors and business stakeholders</li>
 </ul>
-<h2 id="support-tiers">Support Tiers<a class="headerlink" href="#support-tiers" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>Tier 0 – Self-service</strong>: Automated dashboards and runbooks that help responders triage common alerts.</li>
-<li><strong>Tier 1 – Team on call</strong>: Data Operations staff review alerts, escalate when thresholds exceed ability, and coordinate with incident leads.</li>
-<li><strong>Tier 2 – Specialists</strong>: Subject matter experts in architecture, integration, or data contracts dive into root cause when Tier 1 needs support.</li>
-</ol>
-<h2 id="responsibilities">Responsibilities<a class="headerlink" href="#responsibilities" title="Permanent link">&para;</a></h2>
+<hr />
+<h1 id="support-tier-model">Support Tier Model<a class="headerlink" href="#support-tier-model" title="Permanent link">&para;</a></h1>
+<p>The support structure escalates issues progressively from <strong>self-service through operational support, engineering expertise, specialist intervention and finally external vendor or business engagement</strong>.</p>
+<p><img alt="Support Model" src="../assets/images/SupportModel.jpg" /></p>
+<div class="highlight"><pre><span></span><code>Tier 0  →  Self Support
+Tier 1  →  Support Engineers
+Tier 2  →  Senior Engineers
+Tier 3  →  Specialised Support
+Tier 4  →  Third-party Support (Vendor / Business)
+</code></pre></div>
+<p>Issues should always be resolved at the <strong>lowest effective tier</strong> before escalation occurs.</p>
+<hr />
+<h1 id="tier-responsibilities">Tier Responsibilities<a class="headerlink" href="#tier-responsibilities" title="Permanent link">&para;</a></h1>
+<h2 id="tier-0-self-support">Tier 0 — Self Support<a class="headerlink" href="#tier-0-self-support" title="Permanent link">&para;</a></h2>
+<p>Self-support is the first line of resolution and primarily serves business users, analysts and operational stakeholders.</p>
+<p>Typical activities include:</p>
+<ul>
+<li>Reviewing documentation and platform runbooks  </li>
+<li>Checking data freshness or pipeline status dashboards  </li>
+<li>Validating report filters or parameters  </li>
+<li>Confirming expected datasets exist in the platform  </li>
+<li>Reviewing incident communications  </li>
+</ul>
+<p>The objective at this stage is to resolve <strong>simple visibility or usage issues without engineering intervention</strong>.</p>
+<p>Typical users:</p>
+<ul>
+<li>Business analysts  </li>
+<li>Data consumers  </li>
+<li>Product owners  </li>
+</ul>
+<p>Escalation occurs when the issue is confirmed as:</p>
+<ul>
+<li>Data unavailable  </li>
+<li>Data incorrect  </li>
+<li>Pipeline failure  </li>
+<li>Platform performance degradation  </li>
+</ul>
+<hr />
+<h2 id="tier-1-support-engineers">Tier 1 — Support Engineers<a class="headerlink" href="#tier-1-support-engineers" title="Permanent link">&para;</a></h2>
+<p>Support Engineers provide the <strong>first operational response to platform incidents</strong>.</p>
+<p>This tier is typically fulfilled by the <strong>Data Engineering support team.</strong></p>
+<p>Responsibilities include:</p>
+<ul>
+<li>Incident logging and classification  </li>
+<li>Monitoring alert response  </li>
+<li>Pipeline or job restarts  </li>
+<li>Gateway or connectivity checks  </li>
+<li>Credential refresh or configuration validation  </li>
+<li>Basic platform health checks  </li>
+<li>Escalation coordination  </li>
+</ul>
+<p>The objective at this stage is to <strong>restore service quickly using Standard Operating Procedures (SOPs) and runbooks</strong>.</p>
+<p>Tier 1 should <strong>not be expected to debug engineering logic or redesign pipelines</strong>.</p>
+<hr />
+<h2 id="tier-2-senior-engineers">Tier 2 — Senior Engineers<a class="headerlink" href="#tier-2-senior-engineers" title="Permanent link">&para;</a></h2>
+<p>Senior Engineers provide <strong>engineering-level investigation and remediation</strong>.</p>
+<p>This tier usually sits within the <strong>Data Engineering team, but also includes other aligned engineers</strong>.</p>
+<p>Responsibilities include:</p>
+<ul>
+<li>Investigating pipeline failures  </li>
+<li>Debugging transformation logic  </li>
+<li>Resolving schema drift or ingestion failures  </li>
+<li>Investigating data quality issues  </li>
+<li>Pipeline performance tuning  </li>
+<li>Implementing operational fixes requiring code changes  </li>
+<li>Supporting managed services during escalations  </li>
+</ul>
+<p>Tier 2 is responsible for <strong>restoring service when engineering investigation is required</strong>.</p>
+<hr />
+<h2 id="tier-3-specialised-support">Tier 3 — Specialised Support<a class="headerlink" href="#tier-3-specialised-support" title="Permanent link">&para;</a></h2>
+<p>Specialised Support is engaged when issues require <strong>deep platform expertise or architectural intervention</strong>.</p>
+<p>Examples include:</p>
+<ul>
+<li>Platform architecture issues  </li>
+<li>Complex performance problems  </li>
+<li>Security model changes  </li>
+<li>Data model refactoring  </li>
+<li>Infrastructure configuration problems  </li>
+<li>Capacity or scaling issues  </li>
+</ul>
+<p>This tier typically includes:</p>
+<ul>
+<li>Data platform architects  </li>
+<li>Senior platform engineers  </li>
+<li>Security specialists  </li>
+<li>Infrastructure specialists  </li>
+</ul>
+<p>The objective is to <strong>resolve structural issues and prevent recurrence</strong>.</p>
+<hr />
+<h2 id="tier-4-third-party-support">Tier 4 — Third-Party Support<a class="headerlink" href="#tier-4-third-party-support" title="Permanent link">&para;</a></h2>
+<p>The final tier involves <strong>external parties required to resolve issues outside the control of the engineering team</strong>.</p>
+<p>This may include vendor support for platforms like:</p>
+<ul>
+<li>Microsoft </li>
+<li>Alteryx</li>
+<li>Workday</li>
+<li>Other vendors</li>
+</ul>
+<p>It may also involve business escalation such as:</p>
+<ul>
+<li>Data ownership</li>
+<li>Source system defects  </li>
+<li>Data contract breaches  </li>
+<li>Data quality defects</li>
+<li>Business rule validation  </li>
+</ul>
+<p>Tier 4 is engaged only when the issue requires <strong>vendor intervention or business decision-making</strong>.</p>
+<hr />
+<h1 id="support-escalation-journey">Support Escalation Journey<a class="headerlink" href="#support-escalation-journey" title="Permanent link">&para;</a></h1>
+<p>The typical support journey follows the progression below.</p>
+<div class="highlight"><pre><span></span><code>Business User / Monitoring Alert
+        │
+        ▼
+Tier 1 – Support Engineers
+        │
+        ▼
+Tier 2 – Senior Engineers
+        │
+        ▼
+Tier 3 – Specialised Support
+        │
+        ▼
+Tier 4 – Vendor / Business Engagement
+</code></pre></div>
+<p>Escalation should occur only when the current tier <strong>cannot resolve the issue within its operational scope</strong>.</p>
+<hr />
+<h1 id="raci-matrix">RACI Matrix<a class="headerlink" href="#raci-matrix" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
-<th>Area</th>
-<th>Owner</th>
-<th>Practice</th>
+<th>Activity</th>
+<th>Tier 0 Self Support</th>
+<th>Tier 1 Support Engineers</th>
+<th>Tier 2 Senior Engineers</th>
+<th>Tier 3 Specialised Support</th>
+<th>Tier 4 Vendor / Business</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Monitoring &amp; Alerts</td>
-<td>Data Operations</td>
-<td>Review dashboards, verify alerts, open incident ticket when necessary.</td>
+<td>Issue identification</td>
+<td>R</td>
+<td>A</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
 </tr>
 <tr>
-<td>Incident Command</td>
-<td>Data Engineering</td>
-<td>Drive RCA, lead postmortems, update runbooks/knowledge base.</td>
+<td>Incident logging</td>
+<td>I</td>
+<td>R/A</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
 </tr>
 <tr>
-<td>Partner Communications</td>
-<td>Integration Engineering</td>
-<td>Notify dependent systems, gather partner logs, confirm issue resolution.</td>
+<td>Initial triage</td>
+<td>I</td>
+<td>R/A</td>
+<td>C</td>
+<td>I</td>
+<td>I</td>
 </tr>
 <tr>
-<td>Governance</td>
-<td>Platform Lead</td>
-<td>Approve major scope changes and schedule, ensure compliance with policy.</td>
+<td>Monitoring alert response</td>
+<td>I</td>
+<td>R/A</td>
+<td>C</td>
+<td>I</td>
+<td>I</td>
+</tr>
+<tr>
+<td>Pipeline restart / operational remediation</td>
+<td>I</td>
+<td>R</td>
+<td>A</td>
+<td>I</td>
+<td>I</td>
+</tr>
+<tr>
+<td>Platform health checks</td>
+<td>I</td>
+<td>R</td>
+<td>A</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr>
+<td>Pipeline debugging</td>
+<td>I</td>
+<td>C</td>
+<td>R/A</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr>
+<td>Data quality investigation</td>
+<td>C</td>
+<td>C</td>
+<td>R/A</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr>
+<td>Schema or ingestion failure</td>
+<td>I</td>
+<td>C</td>
+<td>R/A</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr>
+<td>Performance optimisation</td>
+<td>I</td>
+<td>I</td>
+<td>R</td>
+<td>A</td>
+<td>C</td>
+</tr>
+<tr>
+<td>Architectural remediation</td>
+<td>I</td>
+<td>I</td>
+<td>C</td>
+<td>R/A</td>
+<td>C</td>
+</tr>
+<tr>
+<td>Major platform outage</td>
+<td>I</td>
+<td>R</td>
+<td>A</td>
+<td>C</td>
+<td>R</td>
+</tr>
+<tr>
+<td>Root cause analysis</td>
+<td>I</td>
+<td>C</td>
+<td>R</td>
+<td>A</td>
+<td>C</td>
+</tr>
+<tr>
+<td>Post-incident review</td>
+<td>I</td>
+<td>C</td>
+<td>R</td>
+<td>A</td>
+<td>I</td>
+</tr>
+<tr>
+<td>Knowledge base updates</td>
+<td>I</td>
+<td>R</td>
+<td>A</td>
+<td>C</td>
+<td>I</td>
 </tr>
 </tbody>
 </table>
-<h2 id="escalation-path">Escalation path<a class="headerlink" href="#escalation-path" title="Permanent link">&para;</a></h2>
+<p>Legend:</p>
 <ul>
-<li>If the on-call engineer cannot resolve the alert within 30 minutes, ping the incident commander and relevant specialist channel.</li>
-<li>Rapidly notify stakeholders listed in the on-call rotation document (kept in this section) when incidents risk downstream deliverables.</li>
-<li>Document every handoff in the incident ticket and capture learnings in the runbook after the event.</li>
+<li><strong>R</strong> Responsible  </li>
+<li><strong>A</strong> Accountable  </li>
+<li><strong>C</strong> Consulted  </li>
+<li><strong>I</strong> Informed  </li>
 </ul>
-<h2 id="communication">Communication<a class="headerlink" href="#communication" title="Permanent link">&para;</a></h2>
+<hr />
+<h1 id="operating-principles">Operating Principles<a class="headerlink" href="#operating-principles" title="Permanent link">&para;</a></h1>
+<h2 id="operational-work-stops-at-tier-1">Operational work stops at Tier 1<a class="headerlink" href="#operational-work-stops-at-tier-1" title="Permanent link">&para;</a></h2>
+<p>Support Engineers focus on <strong>operational stability</strong>, not engineering investigation.</p>
+<h2 id="engineering-teams-should-not-become-the-service-desk">Engineering teams should not become the service desk<a class="headerlink" href="#engineering-teams-should-not-become-the-service-desk" title="Permanent link">&para;</a></h2>
+<p>Senior Engineers should engage only when:</p>
 <ul>
-<li>Use the dedicated #data-services-support channel for notifications.</li>
-<li>Share summaries with the broader Platform team at least once per week.</li>
+<li>operational remediation fails  </li>
+<li>engineering investigation is required  </li>
+<li>code changes are necessary  </li>
 </ul>
-<h2 id="section-pages">Section Pages<a class="headerlink" href="#section-pages" title="Permanent link">&para;</a></h2>
+<h2 id="architectural-work-belongs-at-tier-3">Architectural work belongs at Tier 3<a class="headerlink" href="#architectural-work-belongs-at-tier-3" title="Permanent link">&para;</a></h2>
+<p>Platform architects and specialists should focus on:</p>
 <ul>
-<li><a href="index.html">Useful Information Overview</a></li>
-<li><a href="support-model.html">Support Model</a> (this page)</li>
+<li>platform stability  </li>
+<li>scalability  </li>
+<li>preventative improvements  </li>
+</ul>
+<p>They should not routinely resolve operational incidents.</p>
+<h2 id="vendor-escalation-should-be-controlled">Vendor escalation should be controlled<a class="headerlink" href="#vendor-escalation-should-be-controlled" title="Permanent link">&para;</a></h2>
+<p>Vendor support should only be engaged when:</p>
+<ul>
+<li>the platform itself is failing  </li>
+<li>infrastructure is degraded  </li>
+<li>external SaaS systems are the root cause  </li>
+</ul>
+<h2 id="business-users-own-the-definition-of-logic">Business users own the definition of logic<a class="headerlink" href="#business-users-own-the-definition-of-logic" title="Permanent link">&para;</a></h2>
+<p>The defined business owner should always be engaged when:</p>
+<ul>
+<li>a gap in a mapping or rule set exists</li>
+<li>a new value / category / label is required </li>
+<li>data is being used in a new or changed context</li>
+<li>data quality issues exist.</li>
+</ul>
+<hr />
+<h1 id="outcome">Outcome<a class="headerlink" href="#outcome" title="Permanent link">&para;</a></h1>
+<p>This model ensures:</p>
+<ul>
+<li>Fast operational response  </li>
+<li>Clear escalation paths  </li>
+<li>Reduced dependency on SMEs for routine incidents  </li>
+<li>Appropriate engagement with vendors and business stakeholders  </li>
+<li>A sustainable support structure for the data platform</li>
 </ul>
 
 
