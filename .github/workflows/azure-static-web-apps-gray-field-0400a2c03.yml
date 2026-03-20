@@ -40,10 +40,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Prepare docs folder
-        shell: pwsh
-        run: ./scripts/deploy.ps1
-
       - name: Build MkDocs site
         run: mkdocs build --clean
 
