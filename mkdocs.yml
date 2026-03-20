@@ -71,7 +71,7 @@ nav:
   - Blog: blog/index.md
   - Entity Engine: 
     - Overview: entity-engine/index.md
-      -- Client Engine: client-engine/index.md
+    - Client Engine: client-engine/index.md
     - API: entity-engine/api.md
   - Data Contracts: data-contracts/index.md
   - Runbooks:
