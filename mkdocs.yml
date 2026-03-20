@@ -1,19 +1,20 @@
-site_name: Platform Runbooks
-site_description: Operational runbooks for platform engineering teams
-site_author: Data Platform Team
-site_url: https://max-everest.github.io/platform-runbooks/
+site_name: Data Services Documentation
+site_description: Operational runbooks for the Data Services engineering teams
+site_author: Data Services Team
+site_url: https://max-everest.github.io/Data-Services-Documentation/
+use_directory_urls: false
 
-repo_url: https://github.com/max-everest/platform-runbooks
+repo_url: https://github.com/max-everest/Data-Services-Documentation
 edit_uri: edit/main/docs/
 
 theme:
   name: material
-  logo: assets/RSM_Standard_White_Logo.png
+  logo: assets/images/RSM_Standard_White_Logo.png
   favicon: assets/favicon.png
   palette:
     scheme: slate
-    primary: blue
-    accent: light blue
+    primary: custom
+    accent: custom
   features:
     - navigation.tabs
     - navigation.sections
@@ -24,6 +25,7 @@ theme:
     - search.highlight
     - content.code.copy
     - content.tabs.link
+    - content.feedback
 
 plugins:
   - search
@@ -45,17 +47,35 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
 
+extra_css:
+  - ./assets/stylesheets/extra.css
+
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/max-everest/platform-runbooks
+      link: https://github.com/max-everest/Data-Services-Documentation
+  content:
+    feedback:
+      title: Was this page helpful?
+      url: "https://github.com/max-everest/Data-Services-Documentation/issues/new?title=Feedback for: {title}"
 
 nav:
-  - Home: index.md
-  - Data Platform:
-      - Pipeline Failure: data-platform/pipeline-failure.md
-      - Ingestion Delay: data-platform/ingestion-delay.md
-  - Fabric:
-      - Lakehouse Refresh Failure: fabric/lakehouse-refresh-failure.md
-  - Integrations:
-      - Workday Sync Error: integrations/workday-sync-error.md
+  - Home:
+    - Overview: index.md
+    - Team:
+      - Overview: team/index.md
+      - Member Bios: team/members.md
+    - Useful Information:
+      - Overview: useful-information/index.md
+      - Support Model: useful-information/support-model.md
+  - Blog: blog/index.md
+  - Entity Engine: 
+    - Overview: entity-engine/index.md
+    - API: entity-engine/api.md
+  - Data Contracts: data-contracts/index.md
+  - Runbooks:
+    - Overview: runbooks/index.md
+    - Data Engine: runbooks/data-engine/index.md
+    - Entity Engine: runbooks/entity-engine/index.md
+    - Template: runbooks/template/index.md
+  - SOPs: sops/index.md

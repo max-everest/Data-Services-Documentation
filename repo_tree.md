@@ -1,0 +1,155 @@
+﻿# Repository Structure
+
+```text
+- .github
+    - agents
+        - docs-indexer.agent.md
+        - runbook-author.agent.md
+- .gitignore
+- .venv
+- agents
+    - agent-architecture.md
+    - agent-deploy-instructions.md
+    - context
+        - repo-context.md
+        - repository-map.md
+        - repository-rules.md
+    - templates
+        - runbook-template.md
+- assets
+    - stylesheets
+        - extra.css
+- clientdata.xml
+- content
+    - assets
+        - images
+            - SupportModel.svg
+    - blog
+        - drafts
+            - test.md
+        - index.md
+    - data-contracts
+        - drafts
+            - index.md
+            - invoice-workday.md
+        - index.md
+        - workday
+    - entity-engine
+        - api.md
+        - drafts
+            - client-engine
+                - Address10.md
+                - Address11.md
+                - Billing10.md
+                - BusinessDevelopment10.md
+                - CaseLogLoad10.md
+                - ClientDirectDebits10.md
+                - Communication11.md
+                - Contact10.md
+                - Contact11.md
+                - DimClient.md
+                - Firms10.md
+                - Hierarchy10.md
+                - index.md
+                - InvoiceContact10.md
+                - InvoiceHeader10.md
+                - InvoiceHeader11.md
+                - InvoiceLines10.md
+                - InvoiceLines11.md
+                - IrelandClients10.md
+                - Marketing10.md
+                - Name10.md
+                - OpportunityLines10.md
+                - Relationship10.md
+                - SingleClientOpenView10.md
+                - SingleClientOpenView11.md
+                - SingleClientView10.md
+                - SingleClientView10History.md
+                - SingleClientView11.md
+                - SingleProspectiveClientView10.md
+                - Status10.md
+                - SystemKeys10.md
+                - TaxDetails10.md
+                - Tracker10.md
+                - TrackerFeed.md
+        - index.md
+    - index.md
+    - runbooks
+        - data-engine
+            - index.md
+        - drafts
+            - index.md
+            - system-keys-late.md
+        - entity-engine
+            - financial-engine
+                - index.md
+                - system-keys-late.md
+            - index.md
+            - invoice-mismatches.md
+            - invoice-missing.md
+        - index.md
+        - template
+            - index.md
+            - Template.md
+    - sops
+        - drafts
+        - index.md
+    - team
+        - index.md
+        - members.md
+    - useful-information
+        - index.md
+        - support-model.md
+- docs
+    - assets
+        - images
+            - RSM_Standard_White_Logo.png
+            - SupportModel.jpg
+            - SupportModel.svg
+        - stylesheets
+            - extra.css
+    - blog
+        - index.md
+    - data-contracts
+        - index.md
+    - entity-engine
+        - api.md
+        - client-engine
+        - index.md
+    - index.md
+    - runbooks
+        - data-engine
+            - index.md
+        - entity-engine
+            - financial-engine
+                - index.md
+                - system-keys-late.md
+            - index.md
+            - invoice-mismatches.md
+            - invoice-missing.md
+        - index.md
+        - template
+            - index.md
+            - Template.md
+    - sops
+        - index.md
+    - team
+        - index.md
+        - members.md
+    - useful-information
+        - index.md
+        - support-model.md
+- how-to.md
+- legacy_runbooks
+    - RB_Template.xlsx
+- mkdocs.yml
+- README.md
+- repo_tree.md
+- requirements.txt
+- scripts
+    - convert_runbook_excel.py
+    - deploy.ps1
+    - generate_tree.ps1
+    - local-deploy.ps1
+- site
+```
