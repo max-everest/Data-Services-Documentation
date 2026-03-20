@@ -39,7 +39,7 @@ The importance of this process grows over the accounting period and when within 
 |-----|-----|-----|-----|
 | Monitoring alert (one or more records) | P3/P2/P1 depending on volume & context | One or more rows in `[dbo].[EntityEngineInvoiceMismatch]` | Run diagnostics below; determine scope. |
 | Multiple error records or large volume | P2 / P1 | Many rows returned; business processes impacted | Escalate to Data Owner and Business Owner; follow escalation steps. |
-| No records but downstream reports show missing invoices | Investigate processing | No match in monitoring table, but consumers report missing data | Check Entity Engine processing and ingestion logs; follow standard Entity Engine runbook. |
+| No records but downstream reports show missing invoices | Investigate processing | No match in monitoring table, but consumers report incorrect data | Check Entity Engine processing and ingestion logs; follow standard Entity Engine runbook. |
 
 
 --------------------------------------------------
@@ -82,12 +82,12 @@ Clear communication is critical. Use the templates below and update stakeholders
 
 | Audience | Phase | Message | Channel |
 |-----|-----|-----|-----|
-| Team | Investigation | The Entity Engine invoice monitoring service indicated an error at <time>. I am currently investigating and will raise a bug. | MS Teams |
-| Business Owner & Data Owner | Investigation (P1) | The Invoice syncing service is failing as of <time>. We are currently investigating and will update you at <time>. | Email |
-| Business Owner & Data Owner | Identification (P1) | The reason for the Invoice syncing failure has been identified and is being resolved. I will update you on progress at <time>. | Email |
+| Team | Investigation | The Entity Engine invoice monitoring service indicated an error at < time >. I am currently investigating and will raise a bug. | MS Teams |
+| Business Owner & Data Owner | Investigation (P1) | The Invoice syncing service is failing as of < time >. We are currently investigating and will update you at < time >. | Email |
+| Business Owner & Data Owner | Identification (P1) | The reason for the Invoice syncing failure has been identified and is being resolved. I will update you on progress at < time >. | Email |
 | Business Owner & Data Owner | Resolution (P1) | The Invoice syncing service has been restored. Any relevant outcomes from our debrief will be shared. | Email |
-| Data Owner | Investigation (P2/P3/P4/P5) | The Invoice syncing service indicated errors at <time>. We are investigating and will update you at <time>. | Email |
-| Data Owner | Identification (P2/P3/P4/P5) | The reason for the Invoice syncing errors has been identified and is being resolved. I will update you on progress at <time>. | Email |
+| Data Owner | Investigation (P2/P3/P4/P5) | The Invoice syncing service indicated errors at < time >. We are investigating and will update you at < time >. | Email |
+| Data Owner | Identification (P2/P3/P4/P5) | The reason for the Invoice syncing errors has been identified and is being resolved. I will update you on progress at < time >. | Email |
 | Data Owner | Resolution (P2/P3/P4/P5) | The Invoice syncing service has been restored. Any relevant outcomes from our debrief will be shared. | Email |
 
 Note: If an alert is received outside UK business hours (08:30–17:30), delay communication to business stakeholders until business hours unless the incident is P1 or impacts month-end reporting.

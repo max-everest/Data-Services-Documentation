@@ -29,8 +29,6 @@ The following channels should be avoided:
 
 ---
 
-
-
 # Support Tier Model
 
 The support structure escalates issues progressively from **self-service through operational support, engineering expertise, specialist intervention and finally external vendor or business engagement**.
