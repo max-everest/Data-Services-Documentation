@@ -60,7 +60,14 @@ extra:
       url: "https://github.com/max-everest/Data-Services-Documentation/issues/new?title=Feedback for: {title}"
 
 nav:
-  - Home: index.md
+  - Home:
+    - Overview: index.md
+    - Team:
+      - Overview: team/index.md
+      - Member Bios: team/members.md
+    - Useful Information:
+      - Overview: useful-information/index.md
+      - Support Model: useful-information/support-model.md
   - Blog: blog/index.md
   - Entity Engine: 
     - Overview: entity-engine/index.md

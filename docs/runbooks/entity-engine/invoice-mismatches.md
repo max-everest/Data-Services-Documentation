@@ -55,7 +55,7 @@ The importance of this process grows over the accounting period and when within 
 | Entity Engine processing | Check Entity Engine logs and capture views | Inspect capture/audit views and recent job logs for failures or delays. |
 | Failure audit | Check analytics audit table | If workflow failed, review `[Analytics].[aud].[Error]` for entries created by the failure path. |
 
-#### Use the Entity Engine runbook to assist in issue triage and reconciliation.
+**Use the Entity Engine runbook to assist in issue triage and reconciliation.**
 
 --------------------------------------------------
 

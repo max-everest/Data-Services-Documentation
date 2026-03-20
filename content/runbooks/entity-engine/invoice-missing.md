@@ -55,7 +55,7 @@ The importance of this process grows over the accounting period and when within 
 | Entity Engine processing | Check Entity Engine logs and capture views | Inspect capture/audit views and recent job logs for failures or delays affecting invoice flow. |
 | Failure audit | Check analytics audit table | If workflow failed, review `Analytics.aud.Error` for entries created by the failure path. |
 
-#### Use the Entity Engine runbook to assist in issue triage and reconciliation.
+**Use the Entity Engine runbook to assist in issue triage and reconciliation.**
 
 --------------------------------------------------
 
@@ -101,4 +101,4 @@ Note: If an alert is received outside UK business hours (08:30-17:30), delay com
 
 ## File
 
-Path: content/runbooks/drafts/invoice-missing.md
+Path: content/runbooks/invoice-missing.md

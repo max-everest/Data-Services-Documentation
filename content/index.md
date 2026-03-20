@@ -60,6 +60,27 @@ Platform updates and engineering notes.
 
 ---
 
+## Team Resources
+
+Use the new **Team** section under the Home navigation to capture who owns each platform domain, highlight bios, and list specialties.
+
+- [Team Overview](team/index.md) explains how the group is organized.
+- [Member Bios](team/members.md) lists the people, roles, and focus areas you can refer to for handoffs.
+- As you add more bios or rotation notes, the left navigation automatically keeps the section visible while the in-page list above makes it easy to see what exists.
+
+---
+
+## Useful Information
+
+This section gathers evergreen references and procedures that every responder should know.
+
+- [Useful Information Overview](useful-information/index.md) describes the kinds of references you can add.
+- [Support Model](useful-information/support-model.md) is the first document: it explains incident tiers, ownership, escalation, and communication expectations.
+
+Use the navigation on the left to browse each page without scrolling through a single long document.
+
+---
+
 ## Using This Site
 
 1. Select a documentation category from the navigation

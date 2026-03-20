@@ -1,0 +1,933 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+<edmx:DataServices>
+<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="RSM.EntityEngine.Api.Models.ClientEngineModel">
+<EntityType Name="DimClient">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientPasoKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="CSEPasoKey" Type="Edm.Int32"/>
+<Property Name="ParentClientPasoKey" Type="Edm.Int32"/>
+<Property Name="FirmPasoKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientCode" Type="Edm.String"/>
+<Property Name="ClientName" Type="Edm.String"/>
+<Property Name="TypeCode" Type="Edm.String"/>
+<Property Name="MailingName" Type="Edm.String"/>
+<Property Name="Type" Type="Edm.String"/>
+<Property Name="OrgTypeKey" Type="Edm.Int32"/>
+<Property Name="OrgTypeCode" Type="Edm.String"/>
+<Property Name="OrgType" Type="Edm.String"/>
+<Property Name="OrganisationKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Start" Type="Edm.DateTimeOffset"/>
+<Property Name="IndustryFocusKey" Type="Edm.Int32"/>
+<Property Name="IndustryFocusCode" Type="Edm.String"/>
+<Property Name="IndustryFocus" Type="Edm.String"/>
+<Property Name="Email" Type="Edm.String"/>
+<Property Name="MainPhone" Type="Edm.String"/>
+<Property Name="Status" Type="Edm.String"/>
+<Property Name="CreditTerms" Type="Edm.String"/>
+<Property Name="CreditControlStatus" Type="Edm.String"/>
+<Property Name="TaxSubType" Type="Edm.String"/>
+<Property Name="Currency" Type="Edm.String"/>
+<Property Name="IsActive" Type="Edm.Int32"/>
+<Property Name="TitledSalutation" Type="Edm.String"/>
+<Property Name="FamilyName" Type="Edm.String"/>
+<Property Name="FirstName" Type="Edm.String"/>
+<Property Name="GivenNames" Type="Edm.String"/>
+<Property Name="PreferredGivenName" Type="Edm.String"/>
+<Property Name="Initials" Type="Edm.String"/>
+<Property Name="TitleCode" Type="Edm.String"/>
+<Property Name="Title" Type="Edm.String"/>
+<Property Name="IsCreditControl" Type="Edm.Int32"/>
+<Property Name="IsDebtor" Type="Edm.Byte"/>
+<Property Name="IsSupplier" Type="Edm.Byte"/>
+<Property Name="IsEmployee" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IsInternal" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IsOrganisation" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IsFuture" Type="Edm.Int32" Nullable="false"/>
+</EntityType>
+<EntityType Name="TrackerFeed">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Name" Type="Edm.String"/>
+<Property Name="HomeOfficeName" Type="Edm.String"/>
+<Property Name="SectorText" Type="Edm.String"/>
+<Property Name="SubSectorName" Type="Edm.String"/>
+<Property Name="PasoClientId" Type="Edm.String"/>
+<Property Name="CompanyNumber" Type="Edm.String"/>
+<Property Name="Id" Type="Edm.Guid" Nullable="false"/>
+<Property Name="Client" Type="Edm.Boolean"/>
+<Property Name="ExClient" Type="Edm.Boolean"/>
+<Property Name="Target" Type="Edm.Boolean"/>
+<Property Name="Intermediary" Type="Edm.Boolean"/>
+<Property Name="TargetType" Type="Edm.String"/>
+<Property Name="Supplier" Type="Edm.Boolean"/>
+<Property Name="Competitor" Type="Edm.Boolean"/>
+<Property Name="CSEKey" Type="Edm.String"/>
+<Property Name="CSE" Type="Edm.String"/>
+<Property Name="OwnerKey" Type="Edm.String"/>
+<Property Name="Owner" Type="Edm.String"/>
+<Property Name="LinkToAccountWithinDynamics" Type="Edm.String"/>
+<Property Name="IsPASORecord" Type="Edm.Boolean"/>
+<Property Name="Paso_CSEOffice" Type="Edm.String"/>
+<Property Name="Paso_CSEKey" Type="Edm.Int32"/>
+<Property Name="Paso_CSE" Type="Edm.String"/>
+<Property Name="Paso_IsActive" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="Address10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Active" Type="Edm.Int32" Nullable="false"/>
+<Property Name="AddressType" Type="Edm.String"/>
+<Property Name="AddressTypeKey" Type="Edm.Int32"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Country" Type="Edm.String"/>
+<Property Name="County" Type="Edm.String"/>
+<Property Name="Latitude" Type="Edm.Decimal"/>
+<Property Name="Line1" Type="Edm.String"/>
+<Property Name="Line2" Type="Edm.String"/>
+<Property Name="Line3" Type="Edm.String"/>
+<Property Name="Line4" Type="Edm.String"/>
+<Property Name="Longitude" Type="Edm.Decimal"/>
+<Property Name="PostalCode" Type="Edm.String"/>
+<Property Name="ValidFrom" Type="Edm.DateTimeOffset"/>
+<Property Name="ValidTo" Type="Edm.DateTimeOffset"/>
+<Property Name="PrimarySw" Type="Edm.Int32" Nullable="false"/>
+<Property Name="AddressOrder" Type="Edm.Int64"/>
+</EntityType>
+<EntityType Name="Contact10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="FirstName" Type="Edm.String"/>
+<Property Name="LastName" Type="Edm.String"/>
+<Property Name="Ranking" Type="Edm.Int64"/>
+<Property Name="Salutation" Type="Edm.String"/>
+<Property Name="Title" Type="Edm.String"/>
+<Property Name="ValidFrom" Type="Edm.DateTimeOffset"/>
+</EntityType>
+<EntityType Name="Tracker10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="TrackerStatus" Type="Edm.String"/>
+<Property Name="SicCode" Type="Edm.String"/>
+<Property Name="TrackerLink" Type="Edm.String"/>
+<Property Name="CreditScore" Type="Edm.Int32"/>
+<Property Name="RiskIndicator" Type="Edm.String"/>
+<Property Name="Turnover" Type="Edm.Decimal"/>
+<Property Name="NetAssets" Type="Edm.Decimal"/>
+<Property Name="Employees" Type="Edm.Int32"/>
+<Property Name="OperatingProfit" Type="Edm.Decimal"/>
+<Property Name="PreTaxProfit" Type="Edm.Decimal"/>
+<Property Name="AuditFee" Type="Edm.Decimal"/>
+<Property Name="NonAuditFee" Type="Edm.Decimal"/>
+<Property Name="CurrentAuditor" Type="Edm.String"/>
+<Property Name="NearestOffice" Type="Edm.String"/>
+<Property Name="Sector" Type="Edm.String"/>
+<Property Name="SubSector" Type="Edm.String"/>
+</EntityType>
+<EntityType Name="Name10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="NameTypeKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="NameType" Type="Edm.String"/>
+<Property Name="Name" Type="Edm.String"/>
+</EntityType>
+<EntityType Name="OpportunityLines10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Opportunity" Type="Edm.String"/>
+<Property Name="OpportunityLine" Type="Edm.String"/>
+<Property Name="Type" Type="Edm.String"/>
+<Property Name="Source" Type="Edm.String"/>
+<Property Name="Open" Type="Edm.Int32"/>
+<Property Name="Status" Type="Edm.String"/>
+<Property Name="Created" Type="Edm.DateTimeOffset"/>
+<Property Name="Closed" Type="Edm.DateTimeOffset"/>
+<Property Name="Modified" Type="Edm.DateTimeOffset"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+<Property Name="PASOEngKey" Type="Edm.Int32"/>
+<Property Name="PasoKey" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="Marketing10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="TypeKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Description" Type="Edm.String"/>
+<Property Name="IsActive" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IsDeleted" Type="Edm.Byte" Nullable="false"/>
+<Property Name="PeriodKey" Type="Edm.Int32"/>
+<Property Name="Start" Type="Edm.DateTimeOffset" Nullable="false"/>
+<Property Name="End" Type="Edm.DateTimeOffset" Nullable="false"/>
+<Property Name="Rank" Type="Edm.Int64"/>
+</EntityType>
+<EntityType Name="SystemKeys10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientCode" Type="Edm.String"/>
+<Property Name="PasoKey" Type="Edm.Int32"/>
+<Property Name="DynamicsKey" Type="Edm.String"/>
+<Property Name="CompanyHouseKey" Type="Edm.String"/>
+<Property Name="RetainKey" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="Relationship10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="EmploymentKey" Type="Edm.Int32"/>
+<Property Name="EndDate" Type="Edm.DateTimeOffset"/>
+<Property Name="IsActive" Type="Edm.Boolean"/>
+<Property Name="IsRelationshipActive" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Name" Type="Edm.String"/>
+<Property Name="Office" Type="Edm.String"/>
+<Property Name="Rank" Type="Edm.Int64"/>
+<Property Name="Region" Type="Edm.String"/>
+<Property Name="RelationshipPasoKey" Type="Edm.Int32"/>
+<Property Name="RelationshipPayrollKey" Type="Edm.String"/>
+<Property Name="RelationshipType" Type="Edm.String"/>
+<Property Name="RelationshipTypeKey" Type="Edm.Int32"/>
+<Property Name="StartDate" Type="Edm.DateTimeOffset"/>
+<Property Name="UserName" Type="Edm.String"/>
+</EntityType>
+<EntityType Name="Status10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientStatus" Type="Edm.String"/>
+<Property Name="ClientType" Type="Edm.String"/>
+<Property Name="IsInternational" Type="Edm.Int32"/>
+<Property Name="IsOrganisation" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IsActive" Type="Edm.Int32" Nullable="false"/>
+<Property Name="HasOpenEngagement" Type="Edm.Boolean"/>
+<Property Name="EngagementActionActive" Type="Edm.Int32" Nullable="false"/>
+</EntityType>
+<EntityType Name="Billing10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClosingBalance" Type="Edm.Decimal"/>
+<Property Name="ContactID" Type="Edm.String"/>
+<Property Name="Name" Type="Edm.String"/>
+<Property Name="Period" Type="Edm.String"/>
+<Property Name="RecurringBilling" Type="Edm.Decimal"/>
+<Property Name="Rolling12Month" Type="Edm.Decimal"/>
+<Property Name="Wonf" Type="Edm.Decimal"/>
+<Property Name="Time" Type="Edm.Decimal"/>
+<Property Name="Costs" Type="Edm.Decimal"/>
+</EntityType>
+<EntityType Name="BusinessDevelopment10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="HasTestimonial" Type="Edm.Boolean"/>
+<Property Name="IsCompetitor" Type="Edm.Boolean"/>
+<Property Name="IsIntermediary" Type="Edm.Boolean"/>
+<Property Name="IsSupplier" Type="Edm.Boolean"/>
+<Property Name="IsTarget" Type="Edm.Boolean"/>
+<Property Name="KMCount" Type="Edm.Int32"/>
+<Property Name="OpenDeals" Type="Edm.Int32"/>
+<Property Name="TargetType" Type="Edm.String"/>
+<Property Name="Website" Type="Edm.String"/>
+<Property Name="Sector" Type="Edm.String"/>
+<Property Name="SubSector" Type="Edm.String"/>
+<Property Name="BusinessType" Type="Edm.String"/>
+</EntityType>
+<EntityType Name="SingleClientOpenView10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+<Property Name="ClientCode" Type="Edm.String"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientName" Type="Edm.String"/>
+<Property Name="ClientStatus" Type="Edm.String"/>
+<Property Name="CSEName" Type="Edm.String"/>
+<Property Name="CSEPasoKey" Type="Edm.Int32"/>
+<Property Name="CSEPayrollKey" Type="Edm.String"/>
+<Property Name="CSEUserName" Type="Edm.String"/>
+<Property Name="DynamicsKey" Type="Edm.String"/>
+<Property Name="IsActive" Type="Edm.Int32"/>
+<Property Name="IsCSEActive" Type="Edm.Int32"/>
+<Property Name="PasoKey" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="Communication11">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="GDPROptIn" Type="Edm.Int32"/>
+<Property Name="GDPRChangeDate" Type="Edm.DateTimeOffset"/>
+<Property Name="ContactEmail" Type="Edm.String"/>
+<Property Name="IsPrimary" Type="Edm.Boolean"/>
+<Property Name="CommunicationTypeKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="CommunicationType" Type="Edm.String"/>
+<Property Name="Ranking" Type="Edm.Int64"/>
+<Property Name="ValidFrom" Type="Edm.DateTimeOffset"/>
+<Property Name="ValidTo" Type="Edm.DateTimeOffset"/>
+<Property Name="Active" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+</EntityType>
+<EntityType Name="SingleProspectiveClientView10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="BDStatus" Type="Edm.String"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+<Property Name="City" Type="Edm.String"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientName" Type="Edm.String"/>
+<Property Name="CompanyHouseKey" Type="Edm.String"/>
+<Property Name="Country" Type="Edm.String"/>
+<Property Name="County" Type="Edm.String"/>
+<Property Name="CreatedOn" Type="Edm.DateTimeOffset"/>
+<Property Name="CSEEmploymentKey" Type="Edm.Int32"/>
+<Property Name="DynamicsKey" Type="Edm.String"/>
+<Property Name="FirstName" Type="Edm.String"/>
+<Property Name="IsActive" Type="Edm.Boolean"/>
+<Property Name="IsClient" Type="Edm.Boolean"/>
+<Property Name="IsCompetitor" Type="Edm.Boolean"/>
+<Property Name="IsExClient" Type="Edm.Boolean"/>
+<Property Name="IsIntermediary" Type="Edm.Boolean"/>
+<Property Name="IsInternational" Type="Edm.Boolean"/>
+<Property Name="IsOrganisation" Type="Edm.Boolean"/>
+<Property Name="IsSupplier" Type="Edm.Boolean"/>
+<Property Name="IsTarget" Type="Edm.Boolean"/>
+<Property Name="LastName" Type="Edm.String"/>
+<Property Name="Line1" Type="Edm.String"/>
+<Property Name="Line2" Type="Edm.String"/>
+<Property Name="Line3" Type="Edm.String"/>
+<Property Name="NearestOffice" Type="Edm.String"/>
+<Property Name="OrganisationType" Type="Edm.String"/>
+<Property Name="OwnerEmploymentKey" Type="Edm.Int32"/>
+<Property Name="PostalCode" Type="Edm.String"/>
+<Property Name="Prefix" Type="Edm.String"/>
+<Property Name="PrimaryEmailAddress" Type="Edm.String"/>
+<Property Name="PrimaryPhoneNumber" Type="Edm.String"/>
+<Property Name="Sector" Type="Edm.String"/>
+<Property Name="SubSector" Type="Edm.String"/>
+<Property Name="TargetColour" Type="Edm.String"/>
+<Property Name="TargetType" Type="Edm.String"/>
+<Property Name="Type" Type="Edm.String"/>
+</EntityType>
+<EntityType Name="CaseLogLoad10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="OpportunityDynamicsKey" Type="Edm.Guid" Nullable="false"/>
+<Property Name="Project_Name" Type="Edm.String"/>
+<Property Name="Closed" Type="Edm.DateTimeOffset"/>
+<Property Name="PasoKey" Type="Edm.Int32"/>
+<Property Name="EngagementDate" Type="Edm.DateTimeOffset"/>
+<Property Name="EngagementConcluded" Type="Edm.Int32" Nullable="false"/>
+<Property Name="DateEngagementConcluded" Type="Edm.DateTimeOffset"/>
+<Property Name="Confidential" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Subject_Entity" Type="Edm.String"/>
+<Property Name="Sector" Type="Edm.String"/>
+<Property Name="SubSector" Type="Edm.String"/>
+<Property Name="CaseType" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Engaging_Client" Type="Edm.String"/>
+<Property Name="LeadSource" Type="Edm.String"/>
+<Property Name="Refinance_Opportunity" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Lead_Partner_Username" Type="Edm.String"/>
+<Property Name="Lead_Partner_ID" Type="Edm.Int32"/>
+<Property Name="RecurringFee" Type="Edm.Decimal"/>
+<Property Name="NonRecurringFee" Type="Edm.Decimal"/>
+<Property Name="ContingentFee" Type="Edm.Decimal"/>
+<Property Name="TotalFees" Type="Edm.Int32"/>
+<Property Name="Turnover" Type="Edm.Int64"/>
+<Property Name="Debt" Type="Edm.Int64"/>
+<Property Name="OpportunityLine" Type="Edm.String"/>
+</EntityType>
+<EntityType Name="SingleClientView10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="BillingClosingBalance" Type="Edm.Decimal"/>
+<Property Name="BillingEmail" Type="Edm.String"/>
+<Property Name="BusinessType" Type="Edm.String"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+<Property Name="ClientBDStatus" Type="Edm.String"/>
+<Property Name="ClientCode" Type="Edm.String"/>
+<Property Name="ClientEnd" Type="Edm.DateTimeOffset"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientName" Type="Edm.String"/>
+<Property Name="ClientStart" Type="Edm.DateTimeOffset"/>
+<Property Name="ClientStatus" Type="Edm.String"/>
+<Property Name="CommercialFinanceEmploymentKey" Type="Edm.Int32"/>
+<Property Name="CompanyHouseKey" Type="Edm.String"/>
+<Property Name="Country" Type="Edm.String"/>
+<Property Name="County" Type="Edm.String"/>
+<Property Name="CreditControlEmail" Type="Edm.String"/>
+<Property Name="CreditScore" Type="Edm.Int32"/>
+<Property Name="CSEEmploymentKey" Type="Edm.Int32"/>
+<Property Name="CSEName" Type="Edm.String"/>
+<Property Name="CSEOffice" Type="Edm.String"/>
+<Property Name="CSEPasoKey" Type="Edm.Int32"/>
+<Property Name="CSEPayrollKey" Type="Edm.String"/>
+<Property Name="CSERegion" Type="Edm.String"/>
+<Property Name="CSEUserName" Type="Edm.String"/>
+<Property Name="DynamicsKey" Type="Edm.String"/>
+<Property Name="Employees" Type="Edm.Int32"/>
+<Property Name="EngagementCount" Type="Edm.Int32"/>
+<Property Name="FirmCount" Type="Edm.Int32"/>
+<Property Name="FirstName" Type="Edm.String"/>
+<Property Name="GDPRChangeDate" Type="Edm.DateTimeOffset"/>
+<Property Name="GDPRContactEmail" Type="Edm.String"/>
+<Property Name="GDPROptIn" Type="Edm.Int32"/>
+<Property Name="HasOpenEngagement" Type="Edm.Boolean"/>
+<Property Name="HasTestimonial" Type="Edm.Boolean"/>
+<Property Name="ImmediateParentPasoKey" Type="Edm.Int32"/>
+<Property Name="IndustryFocus" Type="Edm.String"/>
+<Property Name="IsActive" Type="Edm.Int32"/>
+<Property Name="IsCompetitor" Type="Edm.Boolean"/>
+<Property Name="IsCSEActive" Type="Edm.Int32"/>
+<Property Name="IsIntermediary" Type="Edm.Boolean"/>
+<Property Name="IsInternational" Type="Edm.Int32"/>
+<Property Name="IsOrganisation" Type="Edm.Int32"/>
+<Property Name="IsSupplier" Type="Edm.Boolean"/>
+<Property Name="IsTarget" Type="Edm.Boolean"/>
+<Property Name="KM1" Type="Edm.Int32" Nullable="false"/>
+<Property Name="KM2" Type="Edm.Int32" Nullable="false"/>
+<Property Name="KMCount" Type="Edm.Int32"/>
+<Property Name="LastEngagementChange" Type="Edm.DateTimeOffset"/>
+<Property Name="LastName" Type="Edm.String"/>
+<Property Name="Line1" Type="Edm.String"/>
+<Property Name="Line2" Type="Edm.String"/>
+<Property Name="Line3" Type="Edm.String"/>
+<Property Name="Line4" Type="Edm.String"/>
+<Property Name="MailingName" Type="Edm.String"/>
+<Property Name="NetAssets" Type="Edm.Decimal"/>
+<Property Name="OpenDeals" Type="Edm.Int32"/>
+<Property Name="OperatingProfit" Type="Edm.Decimal"/>
+<Property Name="OrganisationType" Type="Edm.String"/>
+<Property Name="PasoKey" Type="Edm.Int32"/>
+<Property Name="PostalCode" Type="Edm.String"/>
+<Property Name="PreTaxProfit" Type="Edm.Decimal"/>
+<Property Name="PrimaryEmailAddress" Type="Edm.String"/>
+<Property Name="RelationshipLeaderEmploymentKey" Type="Edm.Int32"/>
+<Property Name="RetainKey" Type="Edm.Int32"/>
+<Property Name="RiskIndicator" Type="Edm.String"/>
+<Property Name="Rolling12MonthBilled" Type="Edm.Decimal"/>
+<Property Name="Salutation" Type="Edm.String"/>
+<Property Name="Sector" Type="Edm.String"/>
+<Property Name="Segment" Type="Edm.String"/>
+<Property Name="SicCode" Type="Edm.String"/>
+<Property Name="SicDescription" Type="Edm.String"/>
+<Property Name="SicSectionDescription" Type="Edm.String"/>
+<Property Name="SubSector" Type="Edm.String"/>
+<Property Name="TargetType" Type="Edm.String"/>
+<Property Name="Title" Type="Edm.String"/>
+<Property Name="TrackerLink" Type="Edm.String"/>
+<Property Name="TrackerStatus" Type="Edm.String"/>
+<Property Name="Turnover" Type="Edm.Decimal"/>
+<Property Name="UltimateParentPasoKey" Type="Edm.Int32"/>
+<Property Name="VocInterviewCount" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Website" Type="Edm.String"/>
+<Property Name="PreviousPayrollKey" Type="Edm.String"/>
+</EntityType>
+<EntityType Name="SingleClientView10History">
+<Key>
+<PropertyRef Name="C_TableId"/>
+</Key>
+<Property Name="C_TableId" Type="Edm.Int32" Nullable="false"/>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="BillingClosingBalance" Type="Edm.Decimal"/>
+<Property Name="BillingEmail" Type="Edm.String"/>
+<Property Name="BusinessType" Type="Edm.String"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+<Property Name="ClientBDStatus" Type="Edm.String"/>
+<Property Name="ClientCode" Type="Edm.String"/>
+<Property Name="ClientEnd" Type="Edm.DateTimeOffset"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientName" Type="Edm.String"/>
+<Property Name="ClientStart" Type="Edm.DateTimeOffset"/>
+<Property Name="ClientStatus" Type="Edm.String"/>
+<Property Name="CommercialFinanceEmploymentKey" Type="Edm.Int32"/>
+<Property Name="CompanyHouseKey" Type="Edm.String"/>
+<Property Name="Country" Type="Edm.String"/>
+<Property Name="County" Type="Edm.String"/>
+<Property Name="CreditControlEmail" Type="Edm.String"/>
+<Property Name="CreditScore" Type="Edm.Int32"/>
+<Property Name="CSEEmploymentKey" Type="Edm.Int32"/>
+<Property Name="CSEName" Type="Edm.String"/>
+<Property Name="CSEOffice" Type="Edm.String"/>
+<Property Name="CSEPasoKey" Type="Edm.Int32"/>
+<Property Name="CSEPayrollKey" Type="Edm.String"/>
+<Property Name="CSERegion" Type="Edm.String"/>
+<Property Name="CSEUserName" Type="Edm.String"/>
+<Property Name="DynamicsKey" Type="Edm.String"/>
+<Property Name="Employees" Type="Edm.Int32"/>
+<Property Name="EngagementCount" Type="Edm.Int32"/>
+<Property Name="FirmCount" Type="Edm.Int32"/>
+<Property Name="FirstName" Type="Edm.String"/>
+<Property Name="GDPRChangeDate" Type="Edm.DateTimeOffset"/>
+<Property Name="GDPRContactEmail" Type="Edm.String"/>
+<Property Name="GDPROptIn" Type="Edm.Int32"/>
+<Property Name="HasOpenEngagement" Type="Edm.Boolean"/>
+<Property Name="HasTestimonial" Type="Edm.Boolean"/>
+<Property Name="ImmediateParentPasoKey" Type="Edm.Int32"/>
+<Property Name="IndustryFocus" Type="Edm.String"/>
+<Property Name="IsActive" Type="Edm.Int32"/>
+<Property Name="IsCompetitor" Type="Edm.Boolean"/>
+<Property Name="IsCSEActive" Type="Edm.Int32"/>
+<Property Name="IsIntermediary" Type="Edm.Boolean"/>
+<Property Name="IsInternational" Type="Edm.Int32"/>
+<Property Name="IsOrganisation" Type="Edm.Int32"/>
+<Property Name="IsSupplier" Type="Edm.Boolean"/>
+<Property Name="IsTarget" Type="Edm.Boolean"/>
+<Property Name="KM1" Type="Edm.Int32" Nullable="false"/>
+<Property Name="KM2" Type="Edm.Int32" Nullable="false"/>
+<Property Name="KMCount" Type="Edm.Int32"/>
+<Property Name="LastEngagementChange" Type="Edm.DateTimeOffset"/>
+<Property Name="LastName" Type="Edm.String"/>
+<Property Name="Line1" Type="Edm.String"/>
+<Property Name="Line2" Type="Edm.String"/>
+<Property Name="Line3" Type="Edm.String"/>
+<Property Name="Line4" Type="Edm.String"/>
+<Property Name="MailingName" Type="Edm.String"/>
+<Property Name="NetAssets" Type="Edm.Decimal"/>
+<Property Name="OpenDeals" Type="Edm.Int32"/>
+<Property Name="OperatingProfit" Type="Edm.Decimal"/>
+<Property Name="OrganisationType" Type="Edm.String"/>
+<Property Name="PasoKey" Type="Edm.Int32"/>
+<Property Name="PostalCode" Type="Edm.String"/>
+<Property Name="PreTaxProfit" Type="Edm.Decimal"/>
+<Property Name="PrimaryEmailAddress" Type="Edm.String"/>
+<Property Name="RelationshipLeaderEmploymentKey" Type="Edm.Int32"/>
+<Property Name="RetainKey" Type="Edm.Int32"/>
+<Property Name="RiskIndicator" Type="Edm.String"/>
+<Property Name="Rolling12MonthBilled" Type="Edm.Decimal"/>
+<Property Name="Salutation" Type="Edm.String"/>
+<Property Name="Sector" Type="Edm.String"/>
+<Property Name="Segment" Type="Edm.String"/>
+<Property Name="SicCode" Type="Edm.String"/>
+<Property Name="SicDescription" Type="Edm.String"/>
+<Property Name="SicSectionDescription" Type="Edm.String"/>
+<Property Name="SubSector" Type="Edm.String"/>
+<Property Name="TargetType" Type="Edm.String"/>
+<Property Name="Title" Type="Edm.String"/>
+<Property Name="TrackerLink" Type="Edm.String"/>
+<Property Name="TrackerStatus" Type="Edm.String"/>
+<Property Name="Turnover" Type="Edm.Decimal"/>
+<Property Name="UltimateParentPasoKey" Type="Edm.Int32"/>
+<Property Name="VocInterviewCount" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Website" Type="Edm.String"/>
+<Property Name="C_ChangeDate" Type="Edm.DateTimeOffset"/>
+<Property Name="C_Key_A_ClientKey" Type="Edm.String"/>
+<Property Name="C_KeyRowId" Type="Edm.Int32" Nullable="false"/>
+<Property Name="C_RowHashValue" Type="Edm.Binary"/>
+<Property Name="C_Operation" Type="Edm.Int32" Nullable="false"/>
+</EntityType>
+<EntityType Name="TaxDetails10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="TaxNumber" Type="Edm.String"/>
+<Property Name="CountryCode" Type="Edm.String"/>
+<Property Name="ValidFrom" Type="Edm.DateTimeOffset" Nullable="false"/>
+<Property Name="ValidTo" Type="Edm.DateTimeOffset" Nullable="false"/>
+<Property Name="Active" Type="Edm.Boolean"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+</EntityType>
+<EntityType Name="Contact11">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="EmailAddress" Type="Edm.String"/>
+<Property Name="FirstName" Type="Edm.String"/>
+<Property Name="LastName" Type="Edm.String"/>
+<Property Name="ValidFrom" Type="Edm.DateTimeOffset"/>
+<Property Name="ValidTo" Type="Edm.DateTimeOffset"/>
+<Property Name="Active" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+<Property Name="IsCreditControl" Type="Edm.Boolean"/>
+<Property Name="IsBilling" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="Firms10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="PasoFirmKey" Type="Edm.Int32"/>
+<Property Name="FirmCode" Type="Edm.String"/>
+<Property Name="FirmName" Type="Edm.String"/>
+<Property Name="StartDate" Type="Edm.DateTimeOffset"/>
+<Property Name="EndDate" Type="Edm.DateTimeOffset" Nullable="false"/>
+<Property Name="Status" Type="Edm.String"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+</EntityType>
+<EntityType Name="InvoiceHeader10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32"/>
+<Property Name="PasoInvoiceKey" Type="Edm.String"/>
+<Property Name="BillingDate" Type="Edm.DateTimeOffset" Nullable="false"/>
+<Property Name="ContactKey" Type="Edm.Int32"/>
+<Property Name="AddressKey" Type="Edm.Int32"/>
+<Property Name="InvoiceNetAmount" Type="Edm.Decimal"/>
+<Property Name="InvoiceTaxAmount" Type="Edm.Decimal"/>
+<Property Name="IsAdjustment" Type="Edm.Boolean"/>
+<Property Name="PasoInvoiceHeaderKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+<Property Name="Company" Type="Edm.String"/>
+<Property Name="Settled" Type="Edm.Int32" Nullable="false"/>
+<Property Name="PostedDate" Type="Edm.DateTimeOffset" Nullable="false"/>
+<Property Name="OutstandingValue" Type="Edm.Decimal"/>
+<Property Name="AdjustedPasoInvoiceKey" Type="Edm.String"/>
+<Property Name="PasoTaxInvoiceKey" Type="Edm.Int32" Nullable="false"/>
+</EntityType>
+<EntityType Name="InvoiceLines10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="EngagementKey" Type="Edm.Int32"/>
+<Property Name="ClientKey" Type="Edm.Int32"/>
+<Property Name="PhaseKey" Type="Edm.Int32"/>
+<Property Name="InvoiceHeaderKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="TaxRate" Type="Edm.Decimal"/>
+<Property Name="CostCenter" Type="Edm.String"/>
+<Property Name="IsTime" Type="Edm.Int32"/>
+<Property Name="IsDisbursement" Type="Edm.Int32"/>
+<Property Name="InvoiceLineGrossValue" Type="Edm.Decimal"/>
+<Property Name="InvoiceLineTaxValue" Type="Edm.Decimal"/>
+<Property Name="VisibleOnInvoice" Type="Edm.Int32" Nullable="false"/>
+<Property Name="InvoiceEntryType" Type="Edm.String"/>
+<Property Name="InvoiceEntryDescription" Type="Edm.String"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+<Property Name="DisbursementGroup" Type="Edm.String"/>
+<Property Name="DisbursementType" Type="Edm.String"/>
+<Property Name="TaxDate" Type="Edm.DateTimeOffset"/>
+<Property Name="InvoiceLineOrder" Type="Edm.Int32"/>
+<Property Name="PasoDisbursementGroupKey" Type="Edm.Int32"/>
+<Property Name="PasoDisbursementTypeKey" Type="Edm.Int32"/>
+<Property Name="PasoTaxRateKey" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="InvoiceContact10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32"/>
+<Property Name="InvoiceHeaderKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ContactKey" Type="Edm.Int32"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+</EntityType>
+<EntityType Name="Address11">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="AddressActive" Type="Edm.Int32" Nullable="false"/>
+<Property Name="AddressType" Type="Edm.String"/>
+<Property Name="AddressTypeKey" Type="Edm.Int32"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Country" Type="Edm.String"/>
+<Property Name="County" Type="Edm.String"/>
+<Property Name="Latitude" Type="Edm.Decimal"/>
+<Property Name="Line1" Type="Edm.String"/>
+<Property Name="Line2" Type="Edm.String"/>
+<Property Name="Line3" Type="Edm.String"/>
+<Property Name="Line4" Type="Edm.String"/>
+<Property Name="Longitude" Type="Edm.Decimal"/>
+<Property Name="PostalCode" Type="Edm.String"/>
+<Property Name="AddressValidFrom" Type="Edm.DateTimeOffset"/>
+<Property Name="AddressValidTo" Type="Edm.DateTimeOffset"/>
+<Property Name="PrimarySw" Type="Edm.Int32" Nullable="false"/>
+<Property Name="AddressOrder" Type="Edm.Int64"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+<Property Name="IsBillingAddress" Type="Edm.Int32"/>
+<Property Name="CountryCode" Type="Edm.String"/>
+<Property Name="ValidFrom" Type="Edm.DateTimeOffset"/>
+<Property Name="ValidTo" Type="Edm.DateTimeOffset"/>
+<Property Name="Active" Type="Edm.Int32" Nullable="false"/>
+</EntityType>
+<EntityType Name="ClientDirectDebits10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="BillReference" Type="Edm.String"/>
+<Property Name="BillEntity" Type="Edm.String"/>
+<Property Name="BillingDate" Type="Edm.DateTimeOffset"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+<Property Name="ClientCode" Type="Edm.String"/>
+<Property Name="OutstandingAmount" Type="Edm.Decimal"/>
+<Property Name="Filename" Type="Edm.String"/>
+<Property Name="FileDate" Type="Edm.DateTimeOffset"/>
+</EntityType>
+<EntityType Name="Hierarchy10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ImmediateParentPasoKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="UltimateParentPasoKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ImmediateParentClientKey" Type="Edm.Int32"/>
+<Property Name="UltimateParentClientKey" Type="Edm.Int32"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+</EntityType>
+<EntityType Name="IrelandClients10">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientCode" Type="Edm.String"/>
+<Property Name="ClientName" Type="Edm.String"/>
+<Property Name="ClientStatus" Type="Edm.String"/>
+<Property Name="CSEIrelandKey" Type="Edm.Int32"/>
+<Property Name="CSEEmploymentKey" Type="Edm.Int32"/>
+<Property Name="CSEName" Type="Edm.String"/>
+<Property Name="CSEPayrollKey" Type="Edm.String"/>
+<Property Name="CSEOffice" Type="Edm.String"/>
+<Property Name="IsCSEActive" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IsActive" Type="Edm.Int32"/>
+<Property Name="IsDeleted" Type="Edm.Int32"/>
+<Property Name="StartDate" Type="Edm.DateTimeOffset"/>
+<Property Name="EndDate" Type="Edm.DateTimeOffset"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+</EntityType>
+<EntityType Name="SingleClientView11">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientName" Type="Edm.String"/>
+<Property Name="ClientStatus" Type="Edm.String"/>
+<Property Name="ClientCode" Type="Edm.String"/>
+<Property Name="CSEName" Type="Edm.String"/>
+<Property Name="CSEPasoKey" Type="Edm.Int32"/>
+<Property Name="CSEPayrollKey" Type="Edm.String"/>
+<Property Name="CSEUserName" Type="Edm.String"/>
+<Property Name="IsActive" Type="Edm.Int32"/>
+<Property Name="IsCSEActive" Type="Edm.Int32"/>
+<Property Name="PasoKey" Type="Edm.Int32"/>
+<Property Name="DynamicsKey" Type="Edm.String"/>
+<Property Name="ClientStart" Type="Edm.DateTimeOffset"/>
+<Property Name="ClientEnd" Type="Edm.DateTimeOffset"/>
+<Property Name="CompanyHouseKey" Type="Edm.String"/>
+<Property Name="TrackerStatus" Type="Edm.String"/>
+<Property Name="SicCode" Type="Edm.String"/>
+<Property Name="TrackerLink" Type="Edm.String"/>
+<Property Name="CreditScore" Type="Edm.Int32"/>
+<Property Name="RiskIndicator" Type="Edm.String"/>
+<Property Name="Turnover" Type="Edm.Decimal"/>
+<Property Name="NetAssets" Type="Edm.Decimal"/>
+<Property Name="Employees" Type="Edm.Int32"/>
+<Property Name="OperatingProfit" Type="Edm.Decimal"/>
+<Property Name="PreTaxProfit" Type="Edm.Decimal"/>
+<Property Name="CSEOffice" Type="Edm.String"/>
+<Property Name="CSERegion" Type="Edm.String"/>
+<Property Name="CSEEmploymentKey" Type="Edm.Int32"/>
+<Property Name="SicSectionDescription" Type="Edm.String"/>
+<Property Name="SicDescription" Type="Edm.String"/>
+<Property Name="Rolling12MonthBilled" Type="Edm.Decimal"/>
+<Property Name="BillingClosingBalance" Type="Edm.Decimal"/>
+<Property Name="ClientBDStatus" Type="Edm.String"/>
+<Property Name="IsInternational" Type="Edm.Int32"/>
+<Property Name="IsOrganisation" Type="Edm.Int32"/>
+<Property Name="TargetType" Type="Edm.String"/>
+<Property Name="KMCount" Type="Edm.Int32"/>
+<Property Name="IsIntermediary" Type="Edm.Boolean"/>
+<Property Name="IsCompetitor" Type="Edm.Boolean"/>
+<Property Name="IsSupplier" Type="Edm.Boolean"/>
+<Property Name="Website" Type="Edm.String"/>
+<Property Name="OpenDeals" Type="Edm.Int32"/>
+<Property Name="GDPRContactEmail" Type="Edm.String"/>
+<Property Name="GDPROptIn" Type="Edm.Int32"/>
+<Property Name="GDPRChangeDate" Type="Edm.DateTimeOffset"/>
+<Property Name="Title" Type="Edm.String"/>
+<Property Name="FirstName" Type="Edm.String"/>
+<Property Name="LastName" Type="Edm.String"/>
+<Property Name="Salutation" Type="Edm.String"/>
+<Property Name="Line1" Type="Edm.String"/>
+<Property Name="Line2" Type="Edm.String"/>
+<Property Name="Line3" Type="Edm.String"/>
+<Property Name="Line4" Type="Edm.String"/>
+<Property Name="County" Type="Edm.String"/>
+<Property Name="Country" Type="Edm.String"/>
+<Property Name="PostalCode" Type="Edm.String"/>
+<Property Name="ImmediateParentPasoKey" Type="Edm.Int32"/>
+<Property Name="UltimateParentPasoKey" Type="Edm.Int32"/>
+<Property Name="IndustryFocus" Type="Edm.String"/>
+<Property Name="OrganisationType" Type="Edm.String"/>
+<Property Name="EngagementCount" Type="Edm.Int32"/>
+<Property Name="HasOpenEngagement" Type="Edm.Boolean"/>
+<Property Name="Segment" Type="Edm.String"/>
+<Property Name="KM1" Type="Edm.Int32"/>
+<Property Name="KM2" Type="Edm.Int32"/>
+<Property Name="FirmCount" Type="Edm.Int32"/>
+<Property Name="HasTestimonial" Type="Edm.Boolean"/>
+<Property Name="IsTarget" Type="Edm.Boolean"/>
+<Property Name="VocInterviewCount" Type="Edm.Int32"/>
+<Property Name="MailingName" Type="Edm.String"/>
+<Property Name="CreditControlEmail" Type="Edm.String"/>
+<Property Name="BillingEmail" Type="Edm.String"/>
+<Property Name="Sector" Type="Edm.String"/>
+<Property Name="SubSector" Type="Edm.String"/>
+<Property Name="BusinessType" Type="Edm.String"/>
+<Property Name="CommercialFinanceEmploymentKey" Type="Edm.Int32"/>
+<Property Name="RetainKey" Type="Edm.Int32"/>
+<Property Name="PrimaryEmailAddress" Type="Edm.String"/>
+<Property Name="RelationshipLeaderEmploymentKey" Type="Edm.Int32"/>
+<Property Name="LastEngagementChange" Type="Edm.DateTimeOffset"/>
+<Property Name="IsProspective" Type="Edm.Boolean"/>
+<Property Name="IsManuallyCreated" Type="Edm.Boolean"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+</EntityType>
+<EntityType Name="InvoiceHeader11">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="InvoiceHeaderKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32"/>
+<Property Name="PasoInvoiceKey" Type="Edm.String"/>
+<Property Name="ContactKey" Type="Edm.Int32"/>
+<Property Name="AddressKey" Type="Edm.Int32"/>
+<Property Name="InvoiceNetAmount" Type="Edm.Decimal"/>
+<Property Name="InvoiceTaxAmount" Type="Edm.Decimal"/>
+<Property Name="IsAdjustment" Type="Edm.Boolean"/>
+<Property Name="BillingDate" Type="Edm.DateTimeOffset" Nullable="false"/>
+<Property Name="PasoInvoiceHeaderKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Company" Type="Edm.String"/>
+<Property Name="Settled" Type="Edm.Int32" Nullable="false"/>
+<Property Name="PostedDate" Type="Edm.DateTimeOffset" Nullable="false"/>
+<Property Name="OutstandingValue" Type="Edm.Decimal"/>
+<Property Name="AdjustedPasoInvoiceKey" Type="Edm.String"/>
+<Property Name="PasoTaxInvoiceKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+</EntityType>
+<EntityType Name="InvoiceLines11">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="InvoiceLineKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientKey" Type="Edm.Int32"/>
+<Property Name="EngagementKey" Type="Edm.Int32"/>
+<Property Name="PhaseKey" Type="Edm.Int32"/>
+<Property Name="InvoiceHeaderKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="TaxRate" Type="Edm.Decimal"/>
+<Property Name="CostCenter" Type="Edm.String"/>
+<Property Name="IsTime" Type="Edm.Int32"/>
+<Property Name="IsDisbursement" Type="Edm.Int32"/>
+<Property Name="InvoiceLineGrossValue" Type="Edm.Decimal"/>
+<Property Name="InvoiceLineTaxValue" Type="Edm.Decimal"/>
+<Property Name="VisibleOnInvoice" Type="Edm.Int32" Nullable="false"/>
+<Property Name="InvoiceEntryType" Type="Edm.String"/>
+<Property Name="InvoiceEntryDescription" Type="Edm.String"/>
+<Property Name="DisbursementGroup" Type="Edm.String"/>
+<Property Name="DisbursementType" Type="Edm.String"/>
+<Property Name="TaxDate" Type="Edm.DateTimeOffset"/>
+<Property Name="InvoiceLineOrder" Type="Edm.Int32"/>
+<Property Name="PasoDisbursementTypeKey" Type="Edm.Int32"/>
+<Property Name="PasoDisbursementGroupKey" Type="Edm.Int32"/>
+<Property Name="PasoTaxRateKey" Type="Edm.Int32"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+</EntityType>
+<EntityType Name="SingleClientOpenView11">
+<Key>
+<PropertyRef Name="C_EntityKey"/>
+</Key>
+<Property Name="C_EntityKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ChangeDate" Type="Edm.DateTimeOffset"/>
+<Property Name="ClientCode" Type="Edm.String"/>
+<Property Name="ClientKey" Type="Edm.Int32" Nullable="false"/>
+<Property Name="ClientName" Type="Edm.String"/>
+<Property Name="ClientStatus" Type="Edm.String"/>
+<Property Name="CSEName" Type="Edm.String"/>
+<Property Name="CSEPasoKey" Type="Edm.Int32"/>
+<Property Name="CSEPayrollKey" Type="Edm.String"/>
+<Property Name="CSEUserName" Type="Edm.String"/>
+<Property Name="DynamicsKey" Type="Edm.String"/>
+<Property Name="IsActive" Type="Edm.Int32"/>
+<Property Name="IsCSEActive" Type="Edm.Int32"/>
+<Property Name="PasoKey" Type="Edm.Int32"/>
+<Property Name="IsProspective" Type="Edm.Boolean"/>
+<Property Name="IsManuallyCreated" Type="Edm.Boolean"/>
+</EntityType>
+<EntityContainer Name="Container">
+<EntitySet Name="DimClient" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.DimClient"/>
+<EntitySet Name="TrackerFeed" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.TrackerFeed"/>
+<EntitySet Name="Address10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.Address10"/>
+<EntitySet Name="Contact10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.Contact10"/>
+<EntitySet Name="Tracker10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.Tracker10"/>
+<EntitySet Name="Name10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.Name10"/>
+<EntitySet Name="OpportunityLines10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.OpportunityLines10"/>
+<EntitySet Name="Marketing10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.Marketing10"/>
+<EntitySet Name="SystemKeys10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.SystemKeys10"/>
+<EntitySet Name="Relationship10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.Relationship10"/>
+<EntitySet Name="Status10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.Status10"/>
+<EntitySet Name="Billing10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.Billing10"/>
+<EntitySet Name="BusinessDevelopment10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.BusinessDevelopment10"/>
+<EntitySet Name="SingleClientOpenView10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.SingleClientOpenView10"/>
+<EntitySet Name="Communication11" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.Communication11"/>
+<EntitySet Name="SingleProspectiveClientView10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.SingleProspectiveClientView10"/>
+<EntitySet Name="CaseLogLoad10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.CaseLogLoad10"/>
+<EntitySet Name="SingleClientView10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.SingleClientView10"/>
+<EntitySet Name="SingleClientView10History" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.SingleClientView10History"/>
+<EntitySet Name="TaxDetails10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.TaxDetails10"/>
+<EntitySet Name="Contact11" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.Contact11"/>
+<EntitySet Name="Firms10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.Firms10"/>
+<EntitySet Name="InvoiceHeader10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.InvoiceHeader10"/>
+<EntitySet Name="InvoiceLines10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.InvoiceLines10"/>
+<EntitySet Name="InvoiceContact10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.InvoiceContact10"/>
+<EntitySet Name="Address11" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.Address11"/>
+<EntitySet Name="ClientDirectDebits10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.ClientDirectDebits10"/>
+<EntitySet Name="Hierarchy10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.Hierarchy10"/>
+<EntitySet Name="IrelandClients10" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.IrelandClients10"/>
+<EntitySet Name="SingleClientView11" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.SingleClientView11"/>
+<EntitySet Name="InvoiceHeader11" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.InvoiceHeader11"/>
+<EntitySet Name="InvoiceLines11" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.InvoiceLines11"/>
+<EntitySet Name="SingleClientOpenView11" EntityType="RSM.EntityEngine.Api.Models.ClientEngineModel.SingleClientOpenView11"/>
+</EntityContainer>
+</Schema>
+</edmx:DataServices>
+</edmx:Edmx>
