@@ -31,7 +31,7 @@
     - data-contracts
         - drafts
             - index.md
-            - invoice-workday.md
+            - client-invoice-readiness.md
         - index.md
         - workday
     - entity-engine
@@ -85,8 +85,10 @@
                 - index.md
                 - system-keys-late.md
             - index.md
-            - invoice-mismatches.md
-            - invoice-missing.md
+            - client-invoice-mismatches.md
+            - client-invoice-missing.md
+            - supplier-invoice-mismatches.md
+            - supplier-invoice-missing.md
         - index.md
         - template
             - index.md

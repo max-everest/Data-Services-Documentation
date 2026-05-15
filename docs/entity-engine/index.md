@@ -8,7 +8,7 @@ EEHUB is a multi-solution platform designed to manage and expose Entity Engine d
 
 # Platform Overview
 
-The EEHUB repository contains the full set of components required to build and operate the EEHUB environment. These components are maintained within a single repository to ensure consistent versioning and coordinated releases across all platform elements. :contentReference[oaicite:1]{index=1}
+The EEHUB repository contains the full set of components required to build and operate the EEHUB environment. These components are maintained within a single repository to ensure consistent versioning and coordinated releases across all platform elements. 
 
 The repository currently contains three primary solutions:
 
