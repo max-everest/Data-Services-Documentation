@@ -23,6 +23,6 @@ Summary: Contact entries for clients.
 
 ## Responses
 
-- **200 OK** — Green: Request succeeded, data returned. See the API guide: [docs/entity-engine/api.md](docs/entity-engine/api.md).
+- **200 OK** — Green: Request succeeded, data returned. See the API guide: [API guide](../api.md).
 - **4xx Client Errors** — Red: 400/401/403/404 indicate client or auth problems.
 - **Other** — Yellow: 201/204/500 and similar non-200 responses.

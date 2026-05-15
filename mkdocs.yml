@@ -3,9 +3,14 @@ site_description: Operational runbooks for the Data Services engineering teams
 site_author: Data Services Team
 site_url: https://gray-field-0400a2c03.2.azurestaticapps.net
 use_directory_urls: false
+docs_dir: content
 
 repo_url: https://github.com/max-everest/Data-Services-Documentation
-edit_uri: edit/main/docs/
+edit_uri: edit/main/content/
+
+draft_docs: |
+  **/drafts/
+  **/drafts/**
 
 theme:
   name: material

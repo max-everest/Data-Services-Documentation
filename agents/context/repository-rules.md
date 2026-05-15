@@ -76,11 +76,11 @@ After review, drafts may be moved to the appropriate category folder.
 
 PUBLISHED DOCUMENTATION
 
-The documentation site is generated from the docs directory.
+The documentation site is generated directly from the content directory.
 
-docs/
+content/
 
-Agents must never create or modify documentation directly in this directory.
+Draft folders under content are excluded from published builds.
 
 
 --------------------------------------------------
@@ -134,7 +134,6 @@ AI agents must follow these constraints:
 
 Never modify:
 
-docs/
 site/
 
 

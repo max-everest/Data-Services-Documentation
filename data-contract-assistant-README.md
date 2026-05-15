@@ -371,7 +371,7 @@ contracts/
       contract.yaml
       contract-review.md
 
-docs/
+content/
   data-contracts/
     gold/
       example-data-product/
@@ -399,6 +399,8 @@ tools/
   validate_contract.py
   generate_contract_docs.py
 ```
+
+In a MkDocs repository, generated contract pages should live under the authored documentation tree, for example `content/data-contracts/...`, and draft pages should remain under draft folders until they are ready to publish.
 
 ---
 

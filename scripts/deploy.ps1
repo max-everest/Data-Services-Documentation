@@ -16,31 +16,7 @@ if (-not (Test-Path $PythonExecutable)) {
 
 Write-Host "Virtual environment found."
 
-# 2. Sync content → docs
-Write-Host "Syncing content folder into docs..."
-
-# Remove only documentation markdown files but keep assets
-Get-ChildItem docs -Recurse -File -Include *.md | Remove-Item -Force
-
-# Copy content excluding drafts
-Get-ChildItem content -Recurse -File |
-Where-Object { $_.FullName -notmatch "\\drafts\\" } |
-ForEach-Object {
-
-    $relative = $_.FullName.Substring((Resolve-Path content).Path.Length + 1)
-    $target = Join-Path docs $relative
-
-    $targetDir = Split-Path $target
-    if (!(Test-Path $targetDir)) {
-        New-Item -ItemType Directory -Path $targetDir -Force | Out-Null
-    }
-
-    Copy-Item $_.FullName $target -Force
-}
-
-Write-Host "Content successfully synced to docs."
-
-# 3. Build the site
+# 2. Build the site from content/
 Write-Host "Building MkDocs site..."
 
 $buildCmd = "& `"$PythonExecutable`" -m mkdocs build --clean"
@@ -53,7 +29,7 @@ if ($LASTEXITCODE -ne 0) {
 
 Write-Host "MkDocs build completed."
 
-# 4. Deploy to GitHub Pages
+# 3. Deploy to GitHub Pages
 Write-Host "Deploying to GitHub Pages..."
 
 $deployCmd = "& `"$PythonExecutable`" -m mkdocs gh-deploy --clean --message 'Automated deployment via deploy.ps1'"
@@ -66,7 +42,7 @@ if ($LASTEXITCODE -ne 0) {
 
 Write-Host "Deployment successful."
 
-# 5. Wait for GitHub Pages
+# 4. Wait for GitHub Pages
 Start-Sleep -Seconds 30
 
 Write-Host "Validating live site..."
