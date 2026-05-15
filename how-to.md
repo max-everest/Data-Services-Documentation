@@ -151,7 +151,7 @@ content/runbooks/drafts/
 Example:
 
 ```
-content/runbooks/drafts/invoice-mismatches.md
+content/runbooks/drafts/client-invoice-mismatches.md
 ```
 
 ---
@@ -185,7 +185,7 @@ content/runbooks/entity-engine/
 Result:
 
 ```
-content/runbooks/entity-engine/invoice-mismatches.md
+content/runbooks/entity-engine/client-invoice-mismatches.md
 ```
 
 ---

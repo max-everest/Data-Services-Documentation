@@ -1,0 +1,743 @@
+apiVersion: v3.1.0
+kind: DataContract
+
+id: workday_supplier_invoice
+name: workday_supplier_invoice
+version: 0.1.0
+status: draft
+domain: finance
+dataProduct: workday_supplier_invoice
+classification: internal
+
+description:
+  purpose: >
+    Provides a curated Workday supplier invoice dataset that combines supplier invoice
+    headers and invoice lines with resolved client, engagement, and phase context for
+    downstream financial integration and reporting.
+  businessProblem: >
+    Finance and downstream consumers need a governed entity that blends Workday supplier
+    invoice data with enterprise keys and flags credit or adjusted invoices without each
+    consumer reimplementing parsing, lookup, and adjustment logic.
+  usage: >
+    Use this data product for approved supplier invoice integration scenarios where Workday
+    invoice references need to be aligned to client, engagement, and phase context.
+  limitations:
+    - VatAmount is currently populated as null in the supplied SQL and requires confirmation.
+    - CurrencyCode is currently populated as null in the supplied SQL and requires confirmation.
+    - ChangeDate is currently populated as null in the supplied SQL and requires confirmation.
+    - Client, engagement, and phase enrichment depends on parsing EngSeqNum and successful lookup matches.
+  inScope:
+    - Supplier invoice header and invoice line extraction from DataEngine Workday staging.
+    - Enrichment to ClientKey, EngagementKey, and PhaseKey.
+    - Derived supplier invoice references.
+    - Credit note and invoice adjustment indicators.
+  outOfScope:
+    - Source invoice creation and approval workflows in Workday.
+    - VAT derivation until a populated upstream source is confirmed.
+    - Currency normalisation until source and business rules are confirmed.
+    - Consumer-specific presentation logic outside the governed warehouse entity.
+  successMeasures:
+    - Trusted supplier invoice rows are available within the agreed refresh and latency SLA.
+    - Client, engagement, and phase resolution succeeds at the approved threshold.
+    - Credit and adjustment flags are consistent with approved business rules.
+
+ownership:
+  productOwner: Brett Healey
+  businessOwner: Brett Healey
+  dataOwner: Max Everest
+  dataArchitect: Phil Howard
+  sourceSme: Kelly Oliver
+  technicalOwner: Data Engineering team
+  supportOwner: Data Engineering team
+
+approval:
+  status: draft
+  approvers:
+    - role: Business Owner
+      name: Brett Healey
+      required: true
+      status: pending
+    - role: Data Owner
+      name: Max Everest
+      required: true
+      status: pending
+    - role: Data Architect
+      name: Phil Howard
+      required: true
+      status: pending
+    - role: Source SME
+      name: Kelly Oliver
+      required: true
+      status: pending
+    - role: Support Owner
+      name: Data Engineering team
+      required: true
+      status: pending
+  approvalHistory: []
+
+changeManagement:
+  defaultProcess: devops_change
+  changeTypes:
+    - type: defect
+      description: Process failure, data error, or operation outside agreed parameters.
+      approvalRequired: false
+    - type: operations
+      description: Platform, access, dependency, support, or maintenance change.
+      approvalRequired: conditional
+    - type: enhancement
+      description: New or amended business capability requiring prioritisation.
+      approvalRequired: true
+    - type: breaking_change
+      description: Change that may alter schema, semantics, lineage, or consumer behaviour.
+      approvalRequired: true
+    - type: documentation_only
+      description: Documentation change with no processing or control impact.
+      approvalRequired: false
+
+servers:
+  - server: FinancialEngine.databases.rsmuk.com
+    type: sqlserver
+    environment: Production
+    workspace: TBC
+    path: FinancialEngine.out.Invoice11
+
+sources:
+  - name: WorkdayDataStaging_in_Invoice
+    system: WorkdayDataStaging
+    owner: Karl Rostock
+    connection: sqlserver
+    dataset: DataEngine.dbo.WorkdayDataStaging_in_Invoice
+    refresh: every minute between 01:00 and 22:00
+    accessPattern: EE API
+    securityNotes: Access is through the Entity Engine API with appropriate permissions; direct access to the staging table is not provisioned.
+  - name: WorkdayDataStaging_in_InvoiceLines
+    system: WorkdayDataStaging
+    owner: Karl Rostock
+    connection: sqlserver
+    dataset: DataEngine.dbo.WorkdayDataStaging_in_InvoiceLines
+    refresh: every minute between 01:00 and 22:00
+    accessPattern: EE API
+    securityNotes: Access is through the Entity Engine API with appropriate permissions; direct access to the staging table is not provisioned.
+  - name: SystemKeys10
+    system: ClientEngine
+    owner: Phil Howard
+    connection: sqlserver
+    dataset: ClientEngine.out.SystemKeys10
+    refresh: At every 15th minute past hour 4, 6, every hour from 9 through 21, and 22.
+    accessPattern: None
+    securityNotes: Entity is not directly accessible; used for lookup within the Entity Engine processing layer with appropriate permissions.
+  - name: SingleEngagementView10
+    system: EngagementEngine
+    owner: Phil Howard
+    connection: sqlserver
+    dataset: EngagementEngine.out.SingleEngagementView10
+    refresh: At every 15th minute past hour 5, every hour from 9 through 17, and 22.
+    accessPattern: EE API
+    securityNotes: Access is through the Entity Engine API with appropriate permissions; direct access to the staging table is not provisioned.
+  - name: Phase11
+    system: EngagementEngine
+    owner: Phil Howard
+    connection: sqlserver
+    dataset: EngagementEngine.out.Phase11
+    refresh: At every 15th minute past hour 4, 6, every hour from 9 through 21, and 22.
+    accessPattern: EE API
+    securityNotes: Access is through the Entity Engine API with appropriate permissions; direct access to the table is not provisioned.
+  - name: AdjustedInvoices10
+    system: FinancialEngine
+    owner: Phil Howard
+    connection: sqlserver
+    dataset: FinancialEngine.out.AdjustedInvoices10
+    refresh: Realtime
+    accessPattern: None
+    securityNotes: Entity is not directly accessible; used for lookup within the Entity Engine processing layer with appropriate permissions.
+
+targets:
+  - name: Invoice11
+    platform: FinancialEngine
+    path: FinancialEngine.out.Invoice11
+    format: EE API
+    consumers:
+      - Invoice11_PASO
+    accessModel: Access is through the Entity Engine API.
+
+lineage:
+  upstream:
+    - DataEngine.dbo.WorkdayDataStaging_in_Invoice
+    - DataEngine.dbo.WorkdayDataStaging_in_InvoiceLines
+    - ClientEngine.out.SystemKeys10
+    - EngagementEngine.out.SingleEngagementView10
+    - EngagementEngine.out.Phase11
+    - FinancialEngine.out.AdjustedInvoices10
+  downstream:
+    - Invoice11_PASO
+
+processing:
+  trigger: Scheduled
+  schedule: At every 15th minute from 10 through 59 past every hour from 4 through 22.
+  expectedDurationMinutes: 1
+  cutoffMinutes: 10
+  functionalFlow:
+    - step: Load new supplier invoice headers from Workday staging to DataEngine.
+    - step: Load new supplier invoice lines from Workday staging to DataEngine.
+    - step: Left join invoice lines on OurRef to preserve header records.
+    - step: Parse EngSeqNum to resolve client, engagement, and phase identifiers through lookup views.
+    - step: Derive invoice references, amount fields, and credit or adjustment flags.
+    - step: Publish the curated supplier invoice entity to the approved warehouse target.
+  variables:
+    - name: eng_seq_num
+      description: Delimited source value used to derive client, engagement, and phase context.
+    - name: our_ref
+      description: Workday invoice reference used for header and adjustment matching.
+  filteringRules:
+    - id: retain_all_rows
+      description: The supplied SQL does not apply a WHERE clause; all available source rows are retained and enriched through left joins.
+  joinsAndLookups:
+    - id: join_invoice_header_to_lines
+      description: Join WorkdayDataStaging_in_Invoice to WorkdayDataStaging_in_InvoiceLines using OurRef.
+    - id: resolve_client_key
+      description: Resolve ClientKey from ClientEngine.out.SystemKeys10 using the first EngSeqNum segment with PR stripped.
+    - id: resolve_engagement_key
+      description: Resolve EngagementKey from SingleEngagementView10 using the second EngSeqNum segment and ClientKey.
+    - id: resolve_phase_key
+      description: Resolve Phase11 using the third EngSeqNum segment and EngagementKey when the segment is present.
+    - id: resolve_adjustment_chain
+      description: Identify adjusted invoices using FinancialEngine.out.AdjustedInvoices10 and Supplier_Inv_Ref_for_Adjustment.
+  derivations:
+    - id: number_reference
+      description: Create Number by concatenating SupplierCode, an underscore, and SupplierRef.
+    - id: is_credit_note
+      description: Set IsCreditNote to true when InvoiceAmount is less than zero.
+    - id: adjusted_workday_reference
+      description: Nullify blank Supplier_Inv_Ref_for_Adjustment values.
+    - id: is_adjusted
+      description: Set IsAdjusted to true when either the source row or the adjusted invoice lookup contains a non-blank adjustment reference.
+    - id: placeholder_fields
+      description: VatAmount, CurrencyCode, and ChangeDate are currently projected as null placeholders.
+  validations:
+    - id: composite_source_key_unique
+      description: The composite source key should identify a single output row.
+    - id: critical_fields_present
+      description: Critical supplier invoice references, amount, and date fields should be populated according to approved rules.
+    - id: lookup_resolution_threshold
+      description: Client, engagement, and phase lookup resolution should meet the agreed acceptance threshold.
+  businessRules:
+    - id: credit_note_flag_rule
+      description: Negative invoice amounts represent credit notes.
+    - id: adjustment_flag_rule
+      description: An invoice is adjusted when an adjustment reference exists on the source invoice or in the adjusted invoice lookup.
+    - id: phase_resolution_rule
+      description: Phase is resolved only when EngSeqNum contains a valid third segment and the phase belongs to the resolved engagement.
+  dependencies:
+    - name: DataEngine.dbo.WorkdayDataStaging_in_Invoice
+      type: table
+      required: true
+    - name: DataEngine.dbo.WorkdayDataStaging_in_InvoiceLines
+      type: table
+      required: true
+    - name: ClientEngine.out.SystemKeys10
+      type: table
+      required: false
+    - name: EngagementEngine.out.SingleEngagementView10
+      type: table
+      required: false
+    - name: EngagementEngine.out.Phase11
+      type: table
+      required: false
+    - name: FinancialEngine.out.AdjustedInvoices10
+      type: view
+      required: false
+
+schema:
+  - name: ClientKey
+    description: Resolved warehouse client key joined from EngSeqNum and ClientEngine system keys.
+    logicalType: integer
+    physicalType: int
+    required: false
+    criticalDataElement: true
+    sourceField: ClientEngine.out.SystemKeys10.ClientKey
+    businessDefinition: Identifies the client associated with the supplier invoice line.
+    transformationLogic: Entity joined by parsing the first EngSeqNum segment and matching ClientCode.
+    dataClassification: internal
+    owner: Phil Howard
+  - name: ClientCode
+    description: Client code associated with the resolved ClientKey.
+    logicalType: string
+    physicalType: varchar
+    required: false
+    criticalDataElement: true
+    sourceField: ClientEngine.out.SystemKeys10.ClientCode
+    businessDefinition: Source client code used to anchor client resolution.
+    dataClassification: internal
+    owner: Phil Howard
+  - name: EngagementKey
+    description: Resolved warehouse engagement key associated with the supplier invoice line.
+    logicalType: integer
+    physicalType: int
+    required: false
+    criticalDataElement: true
+    sourceField: EngagementEngine.out.SingleEngagementView10.EngagementKey
+    businessDefinition: Identifies the engagement tied to the supplier invoice line.
+    transformationLogic: Derived by parsing the second EngSeqNum segment and joining with ClientKey.
+    dataClassification: internal
+    owner: Phil Howard
+  - name: EngagementCode
+    description: Source engagement sequence used by downstream processes.
+    logicalType: string
+    physicalType: varchar
+    required: false
+    criticalDataElement: true
+    sourceField: EngagementEngine.out.SingleEngagementView10.PasoEngagementSequence
+    businessDefinition: Business identifier for the resolved engagement.
+    dataClassification: internal
+    owner: Phil Howard
+  - name: PhaseKey
+    description: Resolved warehouse phase key associated with the supplier invoice line.
+    logicalType: integer
+    physicalType: int
+    required: false
+    criticalDataElement: true
+    sourceField: EngagementEngine.out.Phase11.$EntityKey
+    businessDefinition: Identifies the engagement phase associated with the supplier invoice line.
+    transformationLogic: Derived from the third EngSeqNum segment when present.
+    dataClassification: internal
+    owner: Phil Howard
+  - name: PhaseCode
+    description: Source phase code matched to the resolved PhaseKey.
+    logicalType: string
+    physicalType: varchar
+    required: false
+    criticalDataElement: false
+    sourceField: EngagementEngine.out.Phase11.Code
+    businessDefinition: Business code for the resolved engagement phase.
+    dataClassification: internal
+    owner: Phil Howard
+  - name: Invoiced
+    description: Supplier invoice incurred date supplied by the source header.
+    logicalType: datetime
+    physicalType: datetime
+    required: false
+    criticalDataElement: true
+    sourceField: DataEngine.dbo.WorkdayDataStaging_in_Invoice.IncurredDate
+    businessDefinition: Date on which the supplier invoice cost was incurred.
+    dataClassification: internal
+    owner: Karl Rostock
+  - name: Number
+    description: Derived supplier invoice number created from supplier code and supplier reference.
+    logicalType: string
+    physicalType: varchar
+    required: false
+    criticalDataElement: true
+    sourceField: DataEngine.dbo.WorkdayDataStaging_in_Invoice.SupplierCode + SupplierRef
+    businessDefinition: Human-readable supplier invoice reference used by downstream consumers.
+    transformationLogic: Concatenate SupplierCode, underscore, and SupplierRef.
+    dataClassification: internal
+    owner: Karl Rostock
+  - name: InvoiceReceived
+    description: Source supplier invoice received date from the Workday header record.
+    logicalType: datetime
+    physicalType: datetime
+    required: false
+    criticalDataElement: true
+    sourceField: DataEngine.dbo.WorkdayDataStaging_in_Invoice.Date
+    businessDefinition: Date on which the supplier invoice was received or recorded.
+    dataClassification: internal
+    owner: Karl Rostock
+  - name: AmountWithoutVat
+    description: Supplier invoice line amount excluding VAT.
+    logicalType: decimal
+    physicalType: decimal(18,2)
+    required: false
+    criticalDataElement: true
+    sourceField: DataEngine.dbo.WorkdayDataStaging_in_InvoiceLines.Amount
+    businessDefinition: Monetary amount for the supplier invoice line excluding VAT.
+    dataClassification: internal
+    owner: Karl Rostock
+  - name: VatAmount
+    description: VAT amount for the supplier invoice line.
+    logicalType: decimal
+    physicalType: decimal(18,2)
+    required: false
+    criticalDataElement: true
+    sourceField: null placeholder
+    businessDefinition: VAT amount associated with the supplier invoice line when available.
+    transformationLogic: Currently projected as CAST(NULL AS DECIMAL(18,2)).
+    dataClassification: internal
+    owner: Phil Howard
+  - name: CurrencyCode
+    description: Currency code for the supplier invoice line amount.
+    logicalType: string
+    physicalType: varchar(500)
+    required: false
+    criticalDataElement: true
+    sourceField: null placeholder
+    businessDefinition: ISO or approved business currency code for the supplier invoice amount.
+    transformationLogic: Currently projected as CAST(NULL AS varchar(500)).
+    dataClassification: internal
+    owner: Phil Howard
+  - name: ChangeDate
+    description: Change tracking timestamp for the supplier invoice row.
+    logicalType: datetime
+    physicalType: datetime
+    required: false
+    criticalDataElement: false
+    sourceField: null placeholder
+    businessDefinition: Timestamp indicating when the curated supplier invoice row last changed.
+    transformationLogic: Currently projected as CAST(NULL AS datetime).
+    dataClassification: internal
+    owner: Phil Howard
+  - name: IsCreditNote
+    description: Indicates whether the supplier invoice amount represents a credit note.
+    logicalType: boolean
+    physicalType: bit
+    required: true
+    criticalDataElement: true
+    sourceField: DataEngine.dbo.WorkdayDataStaging_in_Invoice.InvoiceAmount
+    businessDefinition: True when the supplier invoice amount is less than zero.
+    transformationLogic: CASE WHEN InvoiceAmount < 0 THEN 1 ELSE 0 END.
+    allowedValues:
+      - true
+      - false
+    dataClassification: internal
+    owner: Phil Howard
+  - name: WorkdayReference
+    description: Workday supplier invoice reference from the source header.
+    logicalType: string
+    physicalType: varchar
+    required: false
+    criticalDataElement: true
+    sourceField: DataEngine.dbo.WorkdayDataStaging_in_Invoice.OurRef
+    businessDefinition: Primary Workday supplier invoice reference.
+    dataClassification: internal
+    owner: Karl Rostock
+  - name: WorkdayLineReference
+    description: Workday supplier invoice line reference from the source line.
+    logicalType: string
+    physicalType: varchar
+    required: false
+    criticalDataElement: true
+    sourceField: DataEngine.dbo.WorkdayDataStaging_in_InvoiceLines.LineID
+    businessDefinition: Source Workday reference for the supplier invoice line.
+    dataClassification: internal
+    owner: Karl Rostock
+  - name: DisbursementType
+    description: Disbursement classification provided on the source supplier invoice line.
+    logicalType: string
+    physicalType: varchar
+    required: false
+    criticalDataElement: false
+    sourceField: DataEngine.dbo.WorkdayDataStaging_in_InvoiceLines.DisbursementType
+    businessDefinition: Categorises the nature of the supplier invoice line disbursement.
+    dataClassification: internal
+    owner: Karl Rostock
+  - name: AdjustedWorkdayReference
+    description: Reference to the Workday supplier invoice adjusted by the current invoice, if present.
+    logicalType: string
+    physicalType: varchar
+    required: false
+    criticalDataElement: true
+    sourceField: DataEngine.dbo.WorkdayDataStaging_in_Invoice.Supplier_Inv_Ref_for_Adjustment
+    businessDefinition: Links the current supplier invoice to an adjusted source invoice.
+    transformationLogic: Blank values are converted to null.
+    dataClassification: internal
+    owner: Karl Rostock
+  - name: IsAdjusted
+    description: Indicates whether the supplier invoice participates in an adjustment chain.
+    logicalType: boolean
+    physicalType: bit
+    required: true
+    criticalDataElement: true
+    sourceField: DataEngine.dbo.WorkdayDataStaging_in_Invoice.Supplier_Inv_Ref_for_Adjustment or FinancialEngine.out.AdjustedInvoices10.Supplier_Inv_Ref_for_Adjustment
+    businessDefinition: True when an adjustment reference is present on the supplier invoice or in the adjustment lookup.
+    transformationLogic: CASE expression over the source and lookup adjustment references.
+    allowedValues:
+      - true
+      - false
+    dataClassification: internal
+    owner: Phil Howard
+
+quality:
+  - rule: workday_reference_not_blank
+    description: Every row should carry a non-blank WorkdayReference.
+    dimension: completeness
+    severity: error
+    type: library
+    metric: nullOrBlankValues
+    column: WorkdayReference
+    mustBe: 0
+    owner: data_engineering
+    evidence:
+      type: audit_record
+      location: FinancialEngine.dbo.ScheduleLog
+      resultKey: "OutputId = 240"
+      expectedResult: "Message = Output 240(Invoice) Processing Complete"
+      failureOutput: "Level = 'Error' and Message like 'Failure...'"
+      retainedFor: "7 years"
+      producedBy: FinancialEngineProcessor
+  - rule: amount_without_vat_not_null
+    description: Every output row should contain an AmountWithoutVat value.
+    dimension: completeness
+    severity: error
+    type: library
+    metric: nullValues
+    column: AmountWithoutVat
+    mustBe: 0
+    owner: data_engineering
+    evidence:
+      type: audit_record
+      location: FinancialEngine.dbo.ScheduleLog
+      resultKey: "OutputId = 240"
+      expectedResult: "Message = Output 240(Invoice) Processing Complete"
+      failureOutput: "Level = 'Error' and Message like 'Failure...'"
+      retainedFor: "7 years"
+      producedBy: FinancialEngineProcessor
+  - rule: client_resolution_review
+    description: Rows missing ClientKey should be reviewed because downstream financial context may be incomplete.
+    dimension: integrity
+    severity: warning
+    type: sql
+    query: >
+      SELECT COUNT(*)
+      FROM <target_entity>
+      WHERE ClientKey IS NULL
+    mustBe: 0
+    owner: data_engineering
+    evidence:
+      type: audit_record
+      location: FinancialEngine.out.Invoice11
+      resultKey: "ClientKey IS NULL"
+      expectedResult: 0 records with null ClientKey
+      failureOutput: <> 0 records with null ClientKey
+      retainedFor: "7 years"
+      producedBy: FinancialEngineProcessor
+  - rule: adjustment_reference_consistency
+    description: AdjustedWorkdayReference should be populated when IsAdjusted is true.
+    dimension: consistency
+    severity: warning
+    type: sql
+    query: >
+      SELECT COUNT(*)
+      FROM <target_entity>
+      WHERE IsAdjusted = 1
+        AND AdjustedWorkdayReference IS NULL
+    mustBe: 0
+    owner: data_engineering
+    evidence:
+      type: audit_record
+      location: FinancialEngine.out.Invoice11
+      resultKey: "IsAdjusted = 1 AND AdjustedWorkdayReference IS NULL"
+      expectedResult: 0 records with null AdjustedWorkdayReference when IsAdjusted is true
+      failureOutput: <> 0 records with null AdjustedWorkdayReference when IsAdjusted is true
+      retainedFor: "7 years"
+      producedBy: FinancialEngineProcessor
+  - rule: refresh_within_agreed_sla
+    description: The entity should refresh within the agreed SLA once schedule and target are confirmed.
+    dimension: timeliness
+    severity: warning
+    type: observability
+    target: workday_supplier_invoice
+    expectedOutcome: Latest successful refresh is within the approved SLA window.
+    owner: data_engineering
+    evidence:
+      type: audit_record
+      location: FinancialEngine.dbo.ScheduleLog
+      resultKey: "OutputId = 240"
+      expectedResult: "Processing duration <= 600 seconds and Message = Output 240(Invoice) Processing Complete"
+      failureOutput: "Processing duration > 600 seconds or Message like 'Failure...'"
+      retainedFor: "7 years"
+      producedBy: FinancialEngineProcessor
+
+slaProperties:
+  - property: refresh_frequency
+    value: 15
+    unit: minutes
+    element: workday_supplier_invoice
+    description: Contract refresh frequency for the curated entity.
+  - property: latency
+    value: 60
+    unit: minutes
+    element: workday_supplier_invoice
+    description: Maximum allowed latency from upstream readiness to target availability.
+  - property: retention
+    value: 7
+    unit: years
+    element: workday_supplier_invoice
+    description: Retention expectation for the curated entity.
+  - property: support_response
+    value: 60
+    unit: minutes
+    element: P1 Urgent incidents
+    description: Failure of the whole service or critical data issues impacting month-end processes.
+  - property: support_response
+    value: 1
+    unit: business day
+    element: P3 High incidents
+    description: Partial service degradation or data issues impacting non-critical processes.
+  - property: support_response
+    value: 5
+    unit: business day
+    element: P5 Low incidents
+    description: Issues with limited impact or workaround available.
+
+monitoring:
+  signals:
+    - id: missing_supplier_invoice_alert
+      description: Missing supplier invoice monitoring identifies records older than 24 hours that have not reached the integration layer.
+      condition: Rows exist in EEHub.dbo.WorkdaySupplierInvoiceMissing with invoice age >= 24 hours.
+      threshold: 24h
+      severity: P3
+      channel: data_engineering_email
+      owner: data_engineering
+      autoRemediation: No automatic remediation confirmed.
+    - id: supplier_invoice_mismatch_alert
+      description: Supplier invoice mismatch monitoring identifies invoices whose totals do not align to expected source detail.
+      condition: Rows exist in dbo.EntityEngineSupplierInvoiceMismatch older than 90 minutes since posting.
+      threshold: 90m
+      severity: P3
+      channel: data_engineering_email
+      owner: data_engineering
+      autoRemediation: No automatic remediation confirmed.
+    - id: entity_freshness_breach
+      description: The curated entity has not refreshed within the approved SLA.
+      condition: Latest successful refresh is older than the agreed SLA window.
+      threshold: TBC
+      severity: P3
+      channel: data_engineering_email
+      owner: data_engineering
+      autoRemediation: Retry strategy not yet confirmed.
+  alertPolicy:
+    - condition: Service failure or critical data issues impacting month-end processes.
+      threshold: P1 incident criteria
+      channel: data_engineering_email, Microsoft Teams
+      priority: P1
+      autoRemediation: TBC
+    - condition: Partial service degradation or data issues impacting non-critical processes.
+      threshold: P3 incident criteria
+      channel: data_engineering_email
+      priority: P3
+      autoRemediation: TBC
+    - condition: Any error-severity data quality rule fails.
+      threshold: any error failure
+      channel: data_engineering_email
+      priority: P5
+      autoRemediation: TBC
+  dashboard: TBC
+  evidenceLocation: TBC
+
+support:
+  - channel: data_engineering_email
+    tool: email
+    address: dlitfdst@rsmuk.com
+    scope: Triage and operational support for supplier invoice-related issues.
+  - channel: data_engineering_teams
+    tool: teams
+    address: Data Engineering Team channel
+    scope: Incident coordination and engineering collaboration.
+
+runbook:
+  whenToUse: Use this runbook model when supplier invoices are missing from downstream integration, supplier invoice totals mismatch expected detail, or contract quality rules breach agreed thresholds.
+  severityModel: supplier_invoice_operational_triage
+  triage:
+    - issue: Missing supplier invoice records
+      symptom: Rows are present in EEHub.dbo.WorkdaySupplierInvoiceMissing.
+      action: Determine scope and age of the affected supplier invoices and assess business impact.
+    - issue: Supplier invoice mismatch
+      symptom: Rows are present in dbo.EntityEngineSupplierInvoiceMismatch.
+      action: Reconcile invoice totals to available source detail and check recent processing failures.
+    - issue: Curated entity freshness breach
+      symptom: Latest successful publish is older than the agreed SLA.
+      action: Check upstream readiness, pipeline status, and the target publish step.
+  diagnostics:
+    - id: check_missing_invoice_table
+      name: Check missing supplier invoice monitor
+      type: sql
+      query: >
+        SELECT TOP 100 *
+        FROM [EEHub].[dbo].[WorkdaySupplierInvoiceMissing]
+        ORDER BY [invoiceDate] DESC
+      expectedResult: Only expected exceptions are present and no untriaged supplier invoice records exceed the SLA.
+    - id: check_invoice_mismatch_table
+      name: Check supplier invoice mismatch monitor
+      type: sql
+      query: >
+        SELECT TOP 100 *
+        FROM [dbo].[EntityEngineSupplierInvoiceMismatch]
+        ORDER BY [PostedDate] DESC
+      expectedResult: No unresolved supplier invoice mismatch records exist for the current SLA window.
+    - id: check_target_freshness
+      name: Check latest target refresh
+      type: sql
+      query: TBC
+      expectedResult: Latest successful refresh is within the agreed SLA.
+  escalation:
+    - scenario: Service failure or widespread supplier invoice impact
+      escalateTo: Technical Owner, Data Owner, and Business Owner
+      criteria: Immediate escalation for P1 or widespread impact.
+    - scenario: Multiple missing or mismatched supplier invoices
+      escalateTo: Data Owner and Business Owner
+      criteria: Escalate within 3 hours when the issue meets P2 conditions.
+    - scenario: Single supplier invoice issue not resolved in normal support window
+      escalateTo: Data Owner
+      criteria: Escalate within 1 business day when the issue remains unresolved.
+  communication:
+    - audience: Data Engineering Team
+      phase: Investigation
+      message: Supplier invoice contract issues are being investigated and scope is being confirmed.
+      channel: Teams
+    - audience: Data Owner
+      phase: Investigation
+      message: The workday_supplier_invoice contract has raised an operational alert and is under investigation.
+      channel: Email
+    - audience: Business Owner
+      phase: Resolution
+      message: The supplier invoice issue has been resolved or the mitigation plan has been agreed.
+      channel: Email
+  references:
+    - name: Supplier Invoice Missing Runbook
+      url: docs/runbooks/entity-engine/supplier-invoice-missing.md
+    - name: Supplier Invoice Mismatches Runbook
+      url: docs/runbooks/entity-engine/supplier-invoice-mismatches.md
+
+glossary:
+  - term: EngSeqNum
+    definition: Delimited source value used to derive client, engagement, and phase context.
+  - term: Adjusted Invoice
+    definition: Invoice that references another invoice through Supplier_Inv_Ref_for_Adjustment or the adjusted invoice lookup.
+  - term: Critical Data Element
+    definition: Field that materially affects financial trust, downstream processing, or operational decisions.
+
+references:
+  - name: Invoice Header 10 Entity Page
+    type: documentation
+    url: docs/entity-engine/client-engine/InvoiceHeader10.md
+  - name: Invoice Lines 10 Entity Page
+    type: documentation
+    url: docs/entity-engine/client-engine/InvoiceLines10.md
+  - name: Client Invoice Missing Runbook
+    type: runbook
+    url: docs/runbooks/entity-engine/client-invoice-missing.md
+  - name: Client Invoice Mismatches Runbook
+    type: runbook
+    url: docs/runbooks/entity-engine/client-invoice-mismatches.md
+  - name: Supplier Invoice Missing Runbook
+    type: runbook
+    url: docs/runbooks/entity-engine/supplier-invoice-missing.md
+  - name: Supplier Invoice Mismatches Runbook
+    type: runbook
+    url: docs/runbooks/entity-engine/supplier-invoice-mismatches.md
+  - name: Supplied SQL Definition
+    type: sql_definition
+    url: https://entityengine.apps.rsmuk.com/FinancialEngine/entitiesv2/Details?id=240
+
+customProperties:
+  - property: required_confirmations
+    value:
+      - role: Data Owner
+        area: Critical data elements, quality rule severity, field definitions, and nullability.
+      - role: Business Owner
+        area: Business purpose, intended consumers, and success measures.
+      - role: Data Architect
+        area: Product identity, target path, and downstream architecture.
+      - role: SME
+        area: Source semantics, EngSeqNum parsing logic, and adjustment interpretation.
+      - role: Support Owner
+        area: Support model, incident channel, and service expectations.
