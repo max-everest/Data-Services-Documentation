@@ -59,10 +59,10 @@ Example: `GET /api/clientengine/DimClient?$filter=ClientKey eq 123&$select=Clien
 
 ## Responses
 
-- <span style="background-color:#d1fae5;color:#065f46;padding:4px 8px;border-radius:6px;font-weight:600">200 OK</span> — Request succeeded, data returned. See the API guide for details: [docs/entity-engine/api.md](docs/entity-engine/api.md).
+- <span style="background-color:#d1fae5;color:#065f46;padding:4px 8px;border-radius:6px;font-weight:600">200 OK</span> — Request succeeded, data returned. See the API guide for details: [API guide](../api.md).
 - <span style="background-color:#fee2e2;color:#991b1b;padding:4px 8px;border-radius:6px;font-weight:600">4xx Client Errors</span> — Red: 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found.
 - <span style="background-color:#fef3c7;color:#92400e;padding:4px 8px;border-radius:6px;font-weight:600">Other</span> — Yellow: 201 Created, 204 No Content, 500 Server Error (and other non-200 responses).
 
-- <span style="background-color:#d1fae5;color:#065f46;padding:4px 8px;border-radius:6px;font-weight:600">200 OK</span> — Request succeeded, data returned. See the API guide for details: [docs/entity-engine/api.md](docs/entity-engine/api.md).
+- <span style="background-color:#d1fae5;color:#065f46;padding:4px 8px;border-radius:6px;font-weight:600">200 OK</span> — Request succeeded, data returned. See the API guide for details: [API guide](../api.md).
 - <span style="background-color:#fee2e2;color:#991b1b;padding:4px 8px;border-radius:6px;font-weight:600">4xx Client Errors</span> — 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found.
 - <span style="background-color:#fef3c7;color:#92400e;padding:4px 8px;border-radius:6px;font-weight:600">Other</span> — 201 Created, 204 No Content, 500 Server Error (and other non-200 responses).

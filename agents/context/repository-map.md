@@ -11,7 +11,6 @@ ROOT STRUCTURE
 
 .github/
 content/
-docs/
 site/
 
 
@@ -130,13 +129,13 @@ PUBLISHED DOCUMENTATION
 
 Location:
 
-docs/
+content/
 
 Purpose:
 
-Contains documentation served by the MkDocs documentation site.
+Contains the documentation served by the MkDocs documentation site.
 
-Agents must never create or modify documentation directly inside this directory.
+Agents should create and modify documentation inside this directory.
 
 
 --------------------------------------------------
@@ -182,7 +181,6 @@ content/runbooks/drafts/
 
 Never write documentation to:
 
-docs/
 site/
 
 

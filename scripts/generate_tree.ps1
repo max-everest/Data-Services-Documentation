@@ -1,5 +1,3 @@
-$exclude = @(".git",".venv","site")
-
 $output = @()
 $output += '# Repository Structure'
 $output += ''
@@ -9,7 +7,8 @@ Get-ChildItem -Recurse |
 Where-Object {
     $_.FullName -notlike "*\.git\*" -and
     $_.FullName -notlike "*\.venv\*" -and
-    $_.FullName -notlike "*\site\*"
+    $_.FullName -notlike "*\site\*" -and
+    $_.FullName -notlike "*\.tmp-mkdocs-*"
 } |
 Sort-Object FullName |
 ForEach-Object {

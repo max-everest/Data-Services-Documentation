@@ -38,7 +38,7 @@ Draft → Review → Published Documentation
 
 AI agents generate documentation drafts which are reviewed before being promoted to the published documentation.
 
-Only documentation located inside the `docs/` directory is published to the documentation site.
+Documentation is published directly from the `content/` directory. Draft folders under `content/` are excluded from the build.
 
 
 --------------------------------------------------
@@ -61,15 +61,6 @@ content/
         fabric/
         integrations/
     sops/
-
-docs/
-    assets/
-    blog/
-    data-contracts/
-    entity-engine/
-    runbooks/
-    sops/
-    index.md
 
 site/
 
@@ -166,11 +157,11 @@ to the appropriate category folder.
 
 Location:
 
-docs/
+content/
 
-The docs directory contains documentation that is published by MkDocs.
+The content directory contains documentation that is published by MkDocs.
 
-Content inside this directory is included in the generated documentation site.
+Content inside this directory is included in the generated documentation site, except files under draft folders.
 
 
 --------------------------------------------------
@@ -180,9 +171,9 @@ Content inside this directory is included in the generated documentation site.
 
 Location:
 
-docs/runbooks
-docs/sops
-docs/data-contracts
+content/runbooks
+content/sops
+content/data-contracts
 
 These folders contain the documentation that appears on the published documentation site.
 

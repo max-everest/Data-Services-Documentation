@@ -1,0 +1,10 @@
+:root {
+  --md-primary-fg-color:        #009cde;
+  --md-primary-fg-color--light: #00153d;
+  --md-primary-fg-color--dark:  #00153d;
+  font-size: 1.1rem;
+}
+
+.md-main__inner.md-grid {
+  max-width: calc(61rem * 1.25);
+}

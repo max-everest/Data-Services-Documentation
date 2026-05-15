@@ -56,8 +56,7 @@ pip install -r requirements.txt
 The repository has three primary areas.
 
 ```
-content/   → Authoring area
-docs/      → MkDocs documentation source
+content/   → Authoring and published documentation source
 site/      → Generated website
 ```
 
@@ -67,10 +66,10 @@ Agents operate only inside:
 content/
 ```
 
-Publishing copies content into:
+Draft content stays inside the same source tree under draft folders and is excluded from published builds.
 
 ```
-docs/
+content/**/drafts/
 ```
 
 ---
@@ -241,18 +240,16 @@ powershell scripts/deploy.ps1
 The script performs the following process:
 
 ```
-content → docs
-docs → mkdocs build
+content → mkdocs build
 mkdocs → site
 site → GitHub Pages
 ```
 
 Steps executed:
 
-1. Copy content into docs
-2. Build the MkDocs site
-3. Deploy to GitHub Pages
-4. Validate the deployment
+1. Build the MkDocs site from content
+2. Deploy to GitHub Pages
+3. Validate the deployment
 
 ---
 
@@ -261,7 +258,7 @@ Steps executed:
 After deployment completes the site will be available at:
 
 ```
-https://max-everest.github.io/platform-runbooks/
+https://max-everest.github.io/Data-Services-Documentation/
 ```
 
 Allow approximately **30 seconds** for GitHub Pages to update.

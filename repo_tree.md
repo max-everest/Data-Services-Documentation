@@ -3,8 +3,11 @@
 ```text
 - .github
     - agents
+        - data-contract-assistant.agent.md
         - docs-indexer.agent.md
         - runbook-author.agent.md
+    - workflows
+        - azure-static-web-apps-gray-field-0400a2c03.yml
 - .gitignore
 - .venv
 - agents
@@ -14,6 +17,18 @@
         - repo-context.md
         - repository-map.md
         - repository-rules.md
+    - data-contract-assistant
+        - 00-agent-overview.md
+        - 01-contract-model.md
+        - 02-question-bank.md
+        - 03-yaml-style-guide.md
+        - 04-markdown-style-guide.md
+        - 05-quality-rule-guide.md
+        - 06-runbook-guide.md
+        - 07-review-checklist.md
+        - 08-generation-workflow.md
+        - 09-human-approval-rules.md
+        - 10-output-examples.md
     - templates
         - runbook-template.md
 - assets
@@ -23,55 +38,65 @@
 - content
     - assets
         - images
+            - RSM_Standard_White_Logo.png
+            - SupportModel.jpg
             - SupportModel.svg
+        - stylesheets
+            - extra.css
     - blog
         - drafts
             - test.md
         - index.md
     - data-contracts
         - drafts
-            - index.md
             - client-invoice-readiness.md
+            - index.md
         - index.md
         - workday
+            - index.md
+            - workday-supplier-invoice
+                - controls.md
+                - index.md
+                - operations.md
+                - schema.md
     - entity-engine
         - api.md
+        - client-engine
+            - Address10.md
+            - Address11.md
+            - Billing10.md
+            - BusinessDevelopment10.md
+            - CaseLogLoad10.md
+            - ClientDirectDebits10.md
+            - Communication11.md
+            - Contact10.md
+            - Contact11.md
+            - DimClient.md
+            - Firms10.md
+            - Hierarchy10.md
+            - index.md
+            - InvoiceContact10.md
+            - InvoiceHeader10.md
+            - InvoiceHeader11.md
+            - InvoiceLines10.md
+            - InvoiceLines11.md
+            - IrelandClients10.md
+            - Marketing10.md
+            - Name10.md
+            - OpportunityLines10.md
+            - Relationship10.md
+            - SingleClientOpenView10.md
+            - SingleClientOpenView11.md
+            - SingleClientView10.md
+            - SingleClientView10History.md
+            - SingleClientView11.md
+            - SingleProspectiveClientView10.md
+            - Status10.md
+            - SystemKeys10.md
+            - TaxDetails10.md
+            - Tracker10.md
+            - TrackerFeed.md
         - drafts
-            - client-engine
-                - Address10.md
-                - Address11.md
-                - Billing10.md
-                - BusinessDevelopment10.md
-                - CaseLogLoad10.md
-                - ClientDirectDebits10.md
-                - Communication11.md
-                - Contact10.md
-                - Contact11.md
-                - DimClient.md
-                - Firms10.md
-                - Hierarchy10.md
-                - index.md
-                - InvoiceContact10.md
-                - InvoiceHeader10.md
-                - InvoiceHeader11.md
-                - InvoiceLines10.md
-                - InvoiceLines11.md
-                - IrelandClients10.md
-                - Marketing10.md
-                - Name10.md
-                - OpportunityLines10.md
-                - Relationship10.md
-                - SingleClientOpenView10.md
-                - SingleClientOpenView11.md
-                - SingleClientView10.md
-                - SingleClientView10History.md
-                - SingleClientView11.md
-                - SingleProspectiveClientView10.md
-                - Status10.md
-                - SystemKeys10.md
-                - TaxDetails10.md
-                - Tracker10.md
-                - TrackerFeed.md
         - index.md
     - index.md
     - runbooks
@@ -81,12 +106,12 @@
             - index.md
             - system-keys-late.md
         - entity-engine
+            - client-invoice-mismatches.md
+            - client-invoice-missing.md
             - financial-engine
                 - index.md
                 - system-keys-late.md
             - index.md
-            - client-invoice-mismatches.md
-            - client-invoice-missing.md
             - supplier-invoice-mismatches.md
             - supplier-invoice-missing.md
         - index.md
@@ -102,45 +127,12 @@
     - useful-information
         - index.md
         - support-model.md
-- docs
-    - assets
-        - images
-            - RSM_Standard_White_Logo.png
-            - SupportModel.jpg
-            - SupportModel.svg
-        - stylesheets
-            - extra.css
-    - blog
-        - index.md
-    - data-contracts
-        - index.md
-    - entity-engine
-        - api.md
-        - client-engine
-        - index.md
-    - index.md
-    - runbooks
-        - data-engine
-            - index.md
-        - entity-engine
-            - financial-engine
-                - index.md
-                - system-keys-late.md
-            - index.md
-            - invoice-mismatches.md
-            - invoice-missing.md
-        - index.md
-        - template
-            - index.md
-            - Template.md
-    - sops
-        - index.md
-    - team
-        - index.md
-        - members.md
-    - useful-information
-        - index.md
-        - support-model.md
+- contracts
+    - workday_disbursement_invoice
+    - workday_supplier_invoice
+        - contract.yaml
+        - contract-review.md
+- data-contract-assistant-README.md
 - how-to.md
 - legacy_runbooks
     - RB_Template.xlsx
@@ -154,4 +146,5 @@
     - generate_tree.ps1
     - local-deploy.ps1
 - site
+- staticwebapp.config.json
 ```
