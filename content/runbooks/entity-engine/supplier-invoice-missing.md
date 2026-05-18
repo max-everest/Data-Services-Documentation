@@ -5,6 +5,7 @@
 | Runbook: | Workday Supplier Invoice Missing |
 | --- | --- |
 | Data Contract: | workday_supplier_invoice |
+| Related documentation: | [Workday Supplier Invoice](../../data-contracts/workday/workday-supplier-invoice/index.md) |
 | Purpose: | Triage and resolution for alerts where supplier invoices expected in the curated supplier-invoice target are missing from the integration flow and are therefore not available for downstream supplier-invoice processing. |
 | Context: | This runbook is used when monitoring detects missing supplier invoices and raises a P3 (or higher) alert. The monitoring workflow queries `EEHub.dbo.WorkdaySupplierInvoiceMissing` and notifies the Data Engineering inbox when records are found. |
 | Systems: | Workday -> Data Engine -> FinancialEngine (`Invoice11`) -> EEAPI -> `Invoice11_PASO` |
@@ -84,6 +85,11 @@ The importance of this process grows over the accounting period and when within 
 - Source tables: `DataEngine.dbo.WorkdayDataStaging_in_Invoice`, `DataEngine.dbo.WorkdayDataStaging_in_InvoiceLines`
 - Target table: `FinancialEngine.out.Invoice11`
 - Audit table: `Analytics.dbo.aud.Error`
+
+## Related Documentation
+
+- [Workday Supplier Invoice Data Contract](../../data-contracts/workday/workday-supplier-invoice/index.md)
+- [Contract Operations](../../data-contracts/workday/workday-supplier-invoice/operations.md)
 
 ## File
 
