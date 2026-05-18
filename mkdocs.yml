@@ -23,6 +23,7 @@ theme:
   features:
     - navigation.tabs
     - navigation.sections
+    - navigation.indexes
     - navigation.expand
     - navigation.instant
     - navigation.top
@@ -79,17 +80,27 @@ nav:
     - Client Engine: entity-engine/client-engine/index.md
     - API: entity-engine/api.md
   - Data Contracts:
-    - Overview: data-contracts/index.md
+    - data-contracts/index.md
     - Workday:
-      - Overview: data-contracts/workday/index.md
+      - data-contracts/workday/index.md
       - Workday Supplier Invoice:
-        - Overview: data-contracts/workday/workday-supplier-invoice/index.md
+        - data-contracts/workday/workday-supplier-invoice/index.md
         - Schema: data-contracts/workday/workday-supplier-invoice/schema.md
         - Controls: data-contracts/workday/workday-supplier-invoice/controls.md
         - Operations: data-contracts/workday/workday-supplier-invoice/operations.md
   - Runbooks:
     - Overview: runbooks/index.md
     - Data Engine: runbooks/data-engine/index.md
-    - Entity Engine: runbooks/entity-engine/index.md
+    - Entity Engine:
+      - runbooks/entity-engine/index.md
+      - Supplier Invoice:
+        - Missing: runbooks/entity-engine/supplier-invoice-missing.md
+        - Mismatches: runbooks/entity-engine/supplier-invoice-mismatches.md
+      - Client Invoice:
+        - Missing: runbooks/entity-engine/client-invoice-missing.md
+        - Mismatches: runbooks/entity-engine/client-invoice-mismatches.md
+      - Financial Engine:
+        - runbooks/entity-engine/financial-engine/index.md
+        - System Keys Late: runbooks/entity-engine/financial-engine/system-keys-late.md
     - Template: runbooks/template/index.md
   - SOPs: sops/index.md

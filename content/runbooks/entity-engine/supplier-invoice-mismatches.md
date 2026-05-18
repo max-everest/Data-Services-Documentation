@@ -5,6 +5,7 @@
 | Runbook: | Supplier Invoice Mismatches |
 | --- | --- |
 | Data Contract: | workday_supplier_invoice |
+| Related documentation: | [Workday Supplier Invoice](../../data-contracts/workday/workday-supplier-invoice/index.md) |
 | Purpose: | Triage and resolution for alerts raised by the supplier-invoice mismatch monitoring pipeline. An alert indicates one or more supplier invoices where expected totals or adjustment state do not align to source detail and the discrepancy is older than 90 minutes. |
 | Context: | This runbook is used when the monitoring workflow detects supplier-invoice mismatches and raises a P3 (or higher) alert. The monitoring workflow queries `[dbo].[EntityEngineSupplierInvoiceMismatch]` and notifies the Data Engineering team and stakeholders when records are found. |
 | Systems: | Workday -> Data Engine -> FinancialEngine (`Invoice11`) -> EEAPI -> `Invoice11_PASO` |
@@ -81,6 +82,11 @@ The importance of this process grows over the accounting period and when within 
 - Monitoring table: `[dbo].[EntityEngineSupplierInvoiceMismatch]`
 - Target table: `FinancialEngine.out.Invoice11`
 - Audit table: `Analytics.dbo.[aud].[Error]`
+
+## Related Documentation
+
+- [Workday Supplier Invoice Data Contract](../../data-contracts/workday/workday-supplier-invoice/index.md)
+- [Contract Controls](../../data-contracts/workday/workday-supplier-invoice/controls.md)
 
 ## File
 
