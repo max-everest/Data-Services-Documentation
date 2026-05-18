@@ -78,7 +78,15 @@ nav:
     - Overview: entity-engine/index.md
     - Client Engine: entity-engine/client-engine/index.md
     - API: entity-engine/api.md
-  - Data Contracts: data-contracts/index.md
+  - Data Contracts:
+    - Overview: data-contracts/index.md
+    - Workday:
+      - Overview: data-contracts/workday/index.md
+      - Workday Supplier Invoice:
+        - Overview: data-contracts/workday/workday-supplier-invoice/index.md
+        - Schema: data-contracts/workday/workday-supplier-invoice/schema.md
+        - Controls: data-contracts/workday/workday-supplier-invoice/controls.md
+        - Operations: data-contracts/workday/workday-supplier-invoice/operations.md
   - Runbooks:
     - Overview: runbooks/index.md
     - Data Engine: runbooks/data-engine/index.md
