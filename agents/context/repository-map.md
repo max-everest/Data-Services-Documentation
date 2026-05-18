@@ -2,15 +2,17 @@
 
 This file provides a navigation map of the repository for AI agents.
 
-Agents must use this file to understand where documentation should be created, edited, and published.
+Agents must use this file to understand where documentation should be created, edited, reviewed, and published.
 
 
 --------------------------------------------------
 
 ROOT STRUCTURE
 
-.github/
+agents/
 content/
+contracts/
+scripts/
 site/
 
 
@@ -20,17 +22,17 @@ AGENT CONFIGURATION
 
 Location:
 
-.github/agents/
+agents/
 
 Purpose:
 
-Contains AI agent definitions and documentation templates.
+Contains AI agent definitions, repository context, and documentation templates.
 
 Agents should read the following files before generating documentation:
 
-.github/agents/runbook-author.agent.md
-.github/agents/runbook-template.md
-.github/agents/repository-rules.md
+agents/context/repo-context.md
+agents/context/repository-rules.md
+agents/templates/runbook-template.md
 
 These files define agent behaviour and documentation structure.
 
@@ -52,6 +54,25 @@ Agents may create new documentation inside this directory.
 
 --------------------------------------------------
 
+SHARED DRAFT AREA
+
+Location:
+
+content/drafts/
+
+Purpose:
+
+Shared staging area for draft documentation before review and promotion.
+
+Agents must create all new draft documents in this folder first.
+
+Example:
+
+content/drafts/lakehouse-refresh-failure.md
+
+
+--------------------------------------------------
+
 RUNBOOK AUTHORING
 
 Location:
@@ -60,41 +81,11 @@ content/runbooks/
 
 Purpose:
 
-Contains operational runbooks.
+Contains published operational runbooks arranged by category.
 
+Published category pattern:
 
---------------------------------------------------
-
-RUNBOOK DRAFTS
-
-Location:
-
-content/runbooks/drafts/
-
-Purpose:
-
-Temporary location for AI-generated runbook drafts.
-
-Agents must create all new runbooks in this folder first.
-
-Example:
-
-content/runbooks/drafts/lakehouse-refresh-failure.md
-
-
---------------------------------------------------
-
-RUNBOOK CATEGORIES
-
-Approved runbook categories:
-
-content/runbooks/data-engine
-content/runbooks/entity-engine
-content/runbooks/datacore
-content/runbooks/fabric
-content/runbooks/integrations
-
-Once reviewed, drafts should be moved into the correct category folder.
+content/runbooks/<category>/
 
 
 --------------------------------------------------
@@ -120,7 +111,22 @@ content/data-contracts/
 
 Purpose:
 
-Data interface definitions and contracts.
+Published data interface definitions and contracts.
+
+
+--------------------------------------------------
+
+SOURCE ASSETS
+
+Location:
+
+contracts/
+
+Purpose:
+
+Stores source assets and review material that may feed published contract documentation.
+
+The relationship between `contracts/` and `content/data-contracts/` must remain documented so draft and approval status is not lost during transformation.
 
 
 --------------------------------------------------
@@ -135,7 +141,7 @@ Purpose:
 
 Contains the documentation served by the MkDocs documentation site.
 
-Agents should create and modify documentation inside this directory.
+Coverage across published sections grows incrementally over time.
 
 
 --------------------------------------------------
@@ -176,7 +182,7 @@ Agents must follow these rules:
 
 Create drafts only in:
 
-content/runbooks/drafts/
+content/drafts/
 
 
 Never write documentation to:
@@ -187,17 +193,24 @@ site/
 Never overwrite existing files without user confirmation.
 
 
+Preserve draft status and visible draft markers during migration or promotion unless a reviewer explicitly approves a status change.
+
+
 --------------------------------------------------
 
 PROMOTION WORKFLOW
 
 Draft documentation workflow:
 
-content/runbooks/drafts/example-runbook.md
+content/drafts/example-runbook.md
 
 ↓
 
 Review
+
+↓
+
+Preserve draft status until approval
 
 ↓
 

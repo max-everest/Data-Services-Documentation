@@ -30,6 +30,8 @@ Draft → Review → Published Documentation
 
 AI agents generate draft documentation which must be reviewed before publication.
 
+The repository is expected to grow incrementally. Missing content in a section should be treated as delivery backlog, not as a structural failure of the repository model.
+
 
 --------------------------------------------------
 
@@ -46,27 +48,27 @@ content/data-contracts/
 
 --------------------------------------------------
 
-RUNBOOK DRAFT LOCATION
+SHARED DRAFT LOCATION
 
-Runbook drafts must always be created in:
+All new documentation drafts must be created in:
 
-content/runbooks/drafts/
+content/drafts/
 
 
 Example draft file:
 
-content/runbooks/drafts/lakehouse-refresh-failure.md
+content/drafts/lakehouse-refresh-failure.md
 
 
 --------------------------------------------------
 
 RUNBOOK CATEGORY LOCATIONS
 
-Approved runbook category locations:
+Published runbook category locations include:
 
-content/runbooks/data-platform
-content/runbooks/fabric
-content/runbooks/integrations
+content/runbooks/data-engine
+content/runbooks/entity-engine
+content/runbooks/template
 
 
 After review, drafts may be moved to the appropriate category folder.
@@ -102,7 +104,7 @@ TEMPLATE USAGE
 
 Documentation must follow the templates stored in:
 
-.github/agents/
+agents/templates/
 
 
 Example templates:
@@ -139,10 +141,13 @@ site/
 
 Always create drafts inside:
 
-content/runbooks/drafts/
+content/drafts/
 
 
 Never overwrite existing documentation without user confirmation.
+
+
+Preserve draft status, document control fields, and visible draft markers when moving or transforming documentation unless a reviewer explicitly changes the status.
 
 
 --------------------------------------------------
@@ -154,10 +159,12 @@ Draft documentation should only be promoted to category folders after the user e
 
 Example promotion:
 
-content/runbooks/drafts/lakehouse-refresh-failure.md
+content/drafts/lakehouse-refresh-failure.md
 
 →
 
-content/runbooks/fabric/lakehouse-refresh-failure.md
+content/runbooks/entity-engine/lakehouse-refresh-failure.md
 
 Whenever documentation is created or moved into a category folder the Documentation Indexer agent must update the corresponding index.md file.
+
+Draft markers should only be removed or changed when the reviewer confirms that the document is ready for publication.

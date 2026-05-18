@@ -35,8 +35,6 @@ theme:
 
 plugins:
   - search
-  - awesome-pages
-  - mermaid2
 
 markdown_extensions:
   - admonition

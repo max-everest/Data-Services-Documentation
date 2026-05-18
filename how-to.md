@@ -1,16 +1,18 @@
-# Runbook Documentation Workflow Guide
+# Documentation Workflow Guide
 
-This repository provides a **docs-as-code workflow** for managing operational runbooks using:
+This repository provides a **docs-as-code workflow** for managing operational documentation using:
 
 - AI-assisted authoring (Copilot Agents)
 - Markdown documentation
 - MkDocs for the documentation site
 
-Runbooks follow a structured lifecycle:
+Documentation follows a structured lifecycle:
 
 ```
-Author → Draft → Review → Categorise → Index → Publish
+Author → Draft → Review → Promote → Index → Publish
 ```
+
+The repository is intended to grow incrementally. A section can exist before it is fully populated, but draft status and review state must remain explicit throughout that journey.
 
 ---
 
@@ -53,11 +55,12 @@ pip install -r requirements.txt
 
 # 2. Repository Structure Overview
 
-The repository has three primary areas.
+The repository has two primary working areas.
 
 ```
-content/   → Authoring and published documentation source
-site/      → Generated website
+content/        → Authoring and published documentation source
+content/drafts/ → Shared staging area for draft items
+site/           → Generated website
 ```
 
 Agents operate only inside:
@@ -66,26 +69,26 @@ Agents operate only inside:
 content/
 ```
 
-Draft content stays inside the same source tree under draft folders and is excluded from published builds.
+Draft content stays inside the same source tree under the shared draft area and is excluded from published builds.
 
 ```
-content/**/drafts/
+content/drafts/
 ```
 
 ---
 
-## Runbook Locations
+## Documentation Locations
 
-Draft runbooks are created in:
-
-```
-content/runbooks/drafts
-```
-
-Published runbooks live in category folders:
+Draft items are created in:
 
 ```
-content/runbooks/<category>
+content/drafts/
+```
+
+Published runbooks live in category folders such as:
+
+```
+content/runbooks/<category>/
 ```
 
 Example:
@@ -96,9 +99,9 @@ content/runbooks/entity-engine/invoice-mismatches.md
 
 ---
 
-# 3. Creating a New Runbook
+# 3. Creating a New Document
 
-Runbooks are created using the **runbook-author agent**.
+Documentation can be created using the appropriate agent or manually in Markdown.
 
 ## Step 1 — Start the Agent
 
@@ -108,15 +111,11 @@ In VS Code:
 Copilot Chat → Agent Mode
 ```
 
-Select the agent:
-
-```
-runbook-author
-```
+Select the appropriate agent for the document type you want to create.
 
 ---
 
-## Step 2 — Request a Runbook
+## Step 2 — Request a Document Draft
 
 Example prompt:
 
@@ -144,18 +143,20 @@ The agent generates a Markdown draft.
 Location:
 
 ```
-content/runbooks/drafts/
+content/drafts/
 ```
 
 Example:
 
 ```
-content/runbooks/drafts/client-invoice-mismatches.md
+content/drafts/client-invoice-mismatches.md
 ```
+
+Mark the document clearly as draft when it is first created.
 
 ---
 
-# 4. Reviewing the Runbook
+# 4. Reviewing The Draft
 
 Before publishing, review the draft manually.
 
@@ -166,12 +167,15 @@ Verify:
 - escalation contacts
 - formatting
 - clarity of instructions
+- draft status and document-control metadata
 
 Edit directly in VS Code if necessary.
 
+Keep the document marked as draft until the review explicitly approves publication.
+
 ---
 
-# 5. Publishing the Runbook
+# 5. Publishing The Document
 
 Once approved, move the file to the appropriate category.
 
@@ -187,11 +191,13 @@ Result:
 content/runbooks/entity-engine/client-invoice-mismatches.md
 ```
 
+When moving the file, preserve any status markers and update them only if the reviewer has approved the status change.
+
 ---
 
 # 6. Updating Documentation Indexes
 
-After adding a runbook to a category, update indexes.
+After adding a document to a published category, update indexes.
 
 ## Run the Agent
 
@@ -212,7 +218,7 @@ The agent will:
 - scan the `content` directory
 - detect documentation categories
 - update category index pages
-- update the main runbooks index
+- update the relevant top-level indexes
 
 Example files updated:
 
@@ -242,26 +248,22 @@ The script performs the following process:
 ```
 content → mkdocs build
 mkdocs → site
-site → GitHub Pages
+site → configured hosting target
 ```
 
 Steps executed:
 
 1. Build the MkDocs site from content
-2. Deploy to GitHub Pages
+2. Run the configured deployment target
 3. Validate the deployment
 
 ---
 
 # 8. Viewing the Site
 
-After deployment completes the site will be available at:
+After deployment completes the site will be available at the configured site URL in `mkdocs.yml`.
 
-```
-https://max-everest.github.io/Data-Services-Documentation/
-```
-
-Allow approximately **30 seconds** for GitHub Pages to update.
+Allow time for the configured hosting platform to update.
 
 ---
 
@@ -300,7 +302,7 @@ python scripts/convert_runbook_excel.py
 Converted drafts will appear in:
 
 ```
-content/runbooks/drafts/
+content/drafts/
 ```
 
 Review and publish them using the normal workflow.
@@ -310,14 +312,20 @@ Review and publish them using the normal workflow.
 # 11. Complete Workflow Summary
 
 ```
-runbook-author
+author
       ↓
-content/runbooks/drafts
+content/drafts
       ↓
 review
       ↓
+approve status change
+      ↓
 move to category
       ↓
+update indexes
+      ↓
+publish
+```
 docs-indexer
       ↓
 update index pages
